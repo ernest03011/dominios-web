@@ -1,0 +1,274 @@
+
+/* Google Font */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+
+/* Variables */
+
+:root{
+
+  --ff: 'Poppins', sans-serif;
+
+  --fw-n: 400;
+  --fw-m: 600;
+  --fw-b: 700;
+
+  --fs-p: 1rem;
+  --fs-3: 1.5rem;
+  --fs-2: 2rem;
+  --fs-1: 2.3rem;
+
+  --main-bg-color: hsl(220, 10%, 15%);
+
+  --primary-clr: #fff;
+  --secondary-clr: darkblue;
+  --secondary-clr-light: rgba(84, 84, 205, 0.956);
+
+  --spacer: 1rem;
+  --spacer-md: 2rem;
+  --spacer-lg: 3rem;
+
+  --shadow: 0 0 1em red;
+  --br: 15px;
+
+}
+
+
+/* ------------------  CSS reset   ------------------------------------------*/
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+
+/* ------------------ END / CSS reset   ------------------------------------------*/
+
+
+/* Utilities  */
+
+.flex{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden-visible{
+
+  display: none;
+}
+
+
+/* General Styling */
+
+
+body{
+
+  font-family: var(--ff);
+  font-size: var(--fs-p);
+
+  background-color: var(--main-bg-color);
+  background-image: url(images/domino-colores-640x426.jpg);
+  background-size: cover;
+
+  color: var(--secondary-clr);
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+
+  
+}
+
+main{
+
+  grid-row: 2 / 3;
+
+
+}
+
+h3{
+
+  padding-inline: var(--spacer);
+  margin-top: var(--spacer);
+
+}
+
+a:any-link{
+  color: var(--secondary-clr);
+
+}
+
+a:hover, a:focus{
+
+  transform: scale(1.2);
+  border-radius: var(--br);
+  background-color: var(--primary-clr-clr);
+  text-decoration: none;
+
+
+}
+
+input[type="number"]{
+  width: 100px;
+  border-radius: 10px;
+  background-color: var(--secondary-clr);
+  color: var(--primary-clr);
+  outline: none;
+
+  margin: var(--spacer) auto;
+}
+
+button{
+  background-color: var(--secondary-clr);
+  color: var(--primary-clr);
+  border-radius: var(--br);
+  padding-inline: var(--spacer);
+  margin-bottom: var(--spacer);
+}
+
+
+
+/* Header section */
+
+
+.header__title{
+  padding: var(--spacer);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-b);
+}
+
+
+/* Card Section */
+
+
+.card__content{
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+
+  margin: var(--spacer) auto;
+
+  background-color: var(--primary-clr);
+  color: var(--secondary-clr);
+  border-radius: var(--br);
+  box-shadow: var(--shadow);
+
+}
+
+.card__player{
+  padding: var(--spacer);
+}
+
+.card__new-game{
+
+  margin: var(--spacer-md) auto;
+  padding: var(--spacer);
+  
+}
+
+.card__error-message{
+
+  color: red;
+  background-color: var(--primary-clr);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-b);
+  padding: var(--spacer);
+
+
+}
+
+
+/* Footer */
+
+footer{
+
+  gap: 2em;
+  margin-bottom: 2rem;
+  font-weight: var(--fw-b);
+
+}
+
+.footer__content{
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 345px ){
+
+  :root{
+    font-size: 14px;
+  }
+
+}
+
+@media(min-width: 45em){
+
+  .card__content{
+    width: 35em;
+  }
+
+  footer{
+
+    font-weight: var(--fw-n);
+  
+  }
+}
+
+@media(min-width: 75em){
+
+  :root{
+
+
+    --spacer: 2rem;
+    --spacer-md: 3rem;
+    --spacer-lg: 4rem;
+
+    --fs-p: 1.2rem;
+    --fs-3: 2.5rem;
+    --fs-2: 3rem;
+    --fs-1: 5rem;
+
+  }
+
+  .card__content{
+    width: 60em;
+  }
+
+  footer{
+
+    font-size: var(--fs-p);
+    font-weight: var(--fw-m);
+  
+  }
+}

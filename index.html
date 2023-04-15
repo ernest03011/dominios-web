@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A jugar Dominó</title>
+
+  <link rel="stylesheet" href="index.css">
+
+  <!-- Favicon -->
+
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
+  <link rel="manifest" href="./images/site.webmanifest">
+
+   <!-- END - Favicon -->
+
+</head>
+<body>
+
+  <header>
+    <h1 class="header__title flex">A jugar Dominó</h1>
+  </header>
+
+  <main>
+
+    <p id="card-error-message" class="card__error-message hidden-visible flex">No es un numero valido en Dominó!</p>
+
+    <section id="card" class="card__content">
+
+        <div class="card__player">
+          
+          <h3 class="card__player-title">Jugador 1</h3>
+
+          <ul class="card__counter" id="first-list">
+
+            <li>0</li>
+
+
+          </ul>
+
+          <input type="number" min="1" max="200" id="first-player-score" name="first-player" placeholder="0" maxlength="3" >
+
+          <button type="button" aria-controls="first-player-score" class="card__players-btn">Anotar</button>
+
+          <!-- <button type="button" aria-controls="first-list" >Remover ultimo apunte</button> -->
+
+          
+        </div>
+
+        <div class="card__player">
+          
+          <h3 class="card__player-title">Jugador 2</h3>
+
+          <ul class="card__counter" id="second-list">
+
+            <li>0</li>
+
+          </ul>
+
+          <input type="number" min="1" max="200" id="second-player-score" name="second-player" placeholder="0" maxlength="3" >
+
+          <button type="button" aria-controls="second-player-score" class="card__players-btn">Anotar</button>
+
+          <!-- <button type="button" aria-controls="second-list">Remover ultimo apunte</button> -->
+
+          
+        </div>
+
+    </section>
+
+    <button type="button" id="new-game-btn" class="card__new-game flex">Iniciar nueva partida</button>
+
+
+
+  </main>
+  
+  <footer class="flex">
+    
+    <p class="footer__content">&copy;Manuel De Jesus</p>
+
+  </footer>
+
+  <!-- Loading Javascript file -->
+
+  <script src="index.js"></script>
+
+  <!-- End - Loading Javascript file -->
+
+</body>
+</html>
