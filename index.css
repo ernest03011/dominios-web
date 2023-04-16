@@ -115,20 +115,19 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-
-
-input[type="number"], button{
+.card__add-score, button{
   width: 8.12rem;
   color: var(--primary-clr);
-  padding-inline: var(--spacer);
-  padding-block: calc(var(--spacer) * 0.1);
   border-radius: var(--br);
   background-color: var(--secondary-clr);
+  margin-bottom: 0.5rem;
 
 }
 
 input[type="number"]{
-  margin: var(--spacer) auto;
+  padding-inline: var(--spacer);
+  padding-block: calc(var(--spacer) * 0.1);
+  margin-inline: auto;
 }
 
 
@@ -178,6 +177,18 @@ input[type="number"]{
   font-size: var(--fs-3);
   font-weight: var(--fw-b);
   padding: var(--spacer);
+}
+
+.card__total{
+  gap: 0.2rem;
+}
+
+.card__total-screen{
+  width: 6rem;
+  color: var(--secondary-clr);
+  border: 2px solid var(--secondary-clr);
+  background-color: var(--primary-clr);
+  margin-bottom: 1.2rem;
 }
 
 
