@@ -8,6 +8,7 @@
 
 :root{
 
+  font-size: 14px;
   --ff: 'Poppins', sans-serif;
 
   --fw-n: 400;
@@ -49,11 +50,6 @@ html, body {
   height: 100%;
 }
 
-body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
-
 img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
@@ -66,13 +62,9 @@ input, button, textarea, select {
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
-
-
 /* ------------------ END / CSS reset   ------------------------------------------*/
 
-
 /* Utilities  */
-
 .flex{
 
   display: flex;
@@ -85,14 +77,12 @@ p, h1, h2, h3, h4, h5, h6 {
   display: none;
 }
 
-
 /* General Styling */
-
-
 body{
 
   font-family: var(--ff);
   font-size: var(--fs-p);
+  line-height: 1.5;
 
   background-color: var(--main-bg-color);
   background-image: url(images/domino-colores-640x426.jpg);
@@ -102,15 +92,12 @@ body{
 
   display: grid;
   grid-template-rows: auto 1fr auto;
-  min-height: 100vh;
 
-  
 }
 
 main{
 
   grid-row: 2 / 3;
-
 
 }
 
@@ -121,64 +108,51 @@ h3{
 
 }
 
-a:any-link{
-  color: var(--secondary-clr);
-
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-a:hover, a:focus{
 
-  transform: scale(1.2);
+
+input[type="number"], button{
+  width: 8.12rem;
+  color: var(--primary-clr);
+  padding-inline: var(--spacer);
+  padding-block: calc(var(--spacer) * 0.1);
   border-radius: var(--br);
-  background-color: var(--primary-clr-clr);
-  text-decoration: none;
-
+  background-color: var(--secondary-clr);
 
 }
 
 input[type="number"]{
-  width: 100px;
-  border-radius: 10px;
-  background-color: var(--secondary-clr);
-  color: var(--primary-clr);
-  outline: none;
-
   margin: var(--spacer) auto;
 }
 
-button{
-  background-color: var(--secondary-clr);
-  color: var(--primary-clr);
-  border-radius: var(--br);
-  padding-inline: var(--spacer);
-  margin-bottom: var(--spacer);
-}
-
-
 
 /* Header section */
-
-
 .header__title{
   padding: var(--spacer);
   font-size: var(--fs-1);
   font-weight: var(--fw-b);
+  margin-bottom: var(--spacer-md);
 }
 
 
 /* Card Section */
 
-
 .card__content{
 
   display: grid;
-  grid-auto-flow: column;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-auto-columns: 1fr;
   justify-content: center;
   align-items: center;
-  gap: 2em;
 
-  margin: var(--spacer) auto;
+  width: 94%;
+  margin: 0 auto;
 
   background-color: var(--primary-clr);
   color: var(--secondary-clr);
@@ -188,25 +162,23 @@ button{
 }
 
 .card__player{
+
   padding: var(--spacer);
 }
 
 .card__new-game{
-
+  width: auto;
   margin: var(--spacer-md) auto;
-  padding: var(--spacer);
-  
+  padding: var(--spacer) var(--spacer-md);
+  border-radius: 1.5rem;
 }
 
 .card__error-message{
-
   color: red;
   background-color: var(--primary-clr);
   font-size: var(--fs-3);
   font-weight: var(--fw-b);
   padding: var(--spacer);
-
-
 }
 
 
@@ -224,15 +196,11 @@ footer{
   box-shadow: var(--shadow);
 }
 
-@media (max-width: 345px ){
+@media(min-width: 45em){
 
   :root{
-    font-size: 14px;
+    font-size: 16px;
   }
-
-}
-
-@media(min-width: 45em){
 
   .card__content{
     width: 35em;
@@ -249,7 +217,7 @@ footer{
 
   :root{
 
-
+    font-size: 10px;
     --spacer: 2rem;
     --spacer-md: 3rem;
     --spacer-lg: 4rem;
