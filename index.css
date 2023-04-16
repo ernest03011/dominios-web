@@ -81,7 +81,7 @@ p, h1, h2, h3, h4, h5, h6 {
 body{
 
   font-family: var(--ff);
-  font-size: var(--fs-p);
+    font-size: var(--fs-p);
   line-height: 1.5;
 
   background-color: var(--main-bg-color);
@@ -149,7 +149,7 @@ input[type="number"]{
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-auto-columns: 1fr;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
   width: 94%;
   margin: 0 auto;
@@ -203,35 +203,15 @@ footer{
   }
 
   .card__content{
-    width: 35em;
+    max-width: 720px;
   }
 
   footer{
-
     font-weight: var(--fw-n);
-  
   }
 }
 
 @media(min-width: 75em){
-
-  :root{
-
-    font-size: 10px;
-    --spacer: 2rem;
-    --spacer-md: 3rem;
-    --spacer-lg: 4rem;
-
-    --fs-p: 1.2rem;
-    --fs-3: 2.5rem;
-    --fs-2: 3rem;
-    --fs-1: 5rem;
-
-  }
-
-  .card__content{
-    width: 60em;
-  }
 
   footer{
 
