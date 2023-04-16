@@ -165,7 +165,7 @@ input[type="number"]{
   padding: var(--spacer);
 }
 
-.card__new-game{
+.card__restart-game{
   width: auto;
   margin: var(--spacer-md) auto;
   padding: var(--spacer) var(--spacer-md);

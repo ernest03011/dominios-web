@@ -6,7 +6,7 @@ const secondPlayerInput = document.getElementById("second-player-score");
 
 // const addScoreButtons = document.querySelectorAll("button");
 const addScoreButtons = document.querySelectorAll(".card__players-btn");
-const newGameBtn = document.getElementById("new-game-btn");
+const newGameBtn = document.getElementById("restart-game-btn");
 
 const cardErrorMessage = document.getElementById("card-error-message");
 
