@@ -121,13 +121,14 @@ input::-webkit-inner-spin-button {
   border-radius: var(--br);
   background-color: var(--secondary-clr);
   margin-bottom: 0.5rem;
+  margin-inline: auto;
 
 }
 
 input[type="number"]{
   padding-inline: var(--spacer);
   padding-block: calc(var(--spacer) * 0.1);
-  margin-inline: auto;
+
 }
 
 
@@ -188,7 +189,11 @@ input[type="number"]{
   color: var(--secondary-clr);
   border: 2px solid var(--secondary-clr);
   background-color: var(--primary-clr);
-  margin-bottom: 1.2rem;
+  
+}
+
+.card__players-btn{
+  margin-top: 1rem;
 }
 
 
@@ -207,6 +212,7 @@ footer{
 .footer__content{
   box-shadow: var(--shadow);
   background-color: white;
+  padding-inline: var(--spacer);
 }
 
 @media(min-width: 45em){
