@@ -29,3 +29,10 @@
 - Adding another page where the user can add the amount of players and their names
 - Having a button to reset all values, and a button to start a new game.
 - Readjusting the sizes for the heading and card after 1200px width. The button gets too big as well.
+
+## This is V2
+
+### More notes
+
+- Instead of using labels, I can use radio buttons to make the user select the amont of players and based on it adding multiple names, and then submit it.
+- Once it is submited, the game can start.
