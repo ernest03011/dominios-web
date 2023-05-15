@@ -92,23 +92,19 @@ export const handleAmountOfPlayers = (mainContainer) => {
 
       </section>
 
-      <button id="submit" class="modal-btn">Comenzar Partida</button>
+      <button id="submit-players" class="modal-btn">Comenzar Partida</button>
 
     </article>
   `;
 
-  // Add id to listen to the button. Also, add a paragragh to show alert if it is not a correct number, and use ternary operator for that.
-  // Also, I neeed to add all the classes needed
-
-  // Adding an on change event which will add or delete input to add the names.
-
   let item = newLocal;
   mainContainer.innerHTML = item;
 
-  const selectedRadio = document.querySelectorAll("[name='players_total']");
-  const newSection = document.getElementById("card-players-info");
-  console.log(newSection);
-  console.log(mainContainer);
+  const selectedRadio = mainContainer.querySelectorAll(
+    "[name='players_total']"
+  );
+
+  const newSection = mainContainer.querySelector("#card-players-info");
 
   selectedRadio.forEach((radioBtn) => {
     radioBtn.addEventListener("click", () => {
@@ -117,9 +113,10 @@ export const handleAmountOfPlayers = (mainContainer) => {
 
       for (let index = 0; index < numPlayer; index++) {
         text += `
-
           <p>Nombre del Jugador NO. ${index + 1}: </p>
-          <input type="text" placeholder="Ramon">
+          <input type="text" placeholder="Agregar Nombre" id="player${
+            index + 1
+          }" name="player-name">
           <br/>
         `;
       }
@@ -127,4 +124,15 @@ export const handleAmountOfPlayers = (mainContainer) => {
       newSection.innerHTML = text;
     });
   });
+
+  mainContainer
+    .querySelector("#submit-players")
+    .addEventListener("click", () => {
+      const allPlayers = newSection.querySelectorAll("[name='player-name']");
+      setAllPlayers(allPlayers);
+    });
+};
+
+export const setAllPlayers = (allPlayers) => {
+  console.log(allPlayers);
 };
