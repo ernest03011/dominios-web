@@ -112,11 +112,12 @@ export const handleAmountOfPlayers = (mainContainer) => {
       let text = "";
 
       for (let index = 0; index < numPlayer; index++) {
+        const ordinalNumber = getOrdinalNumber(index + 1);
         text += `
           <p>Nombre del Jugador NO. ${index + 1}: </p>
           <input type="text" placeholder="Agregar Nombre" id="player${
             index + 1
-          }" name="player-name">
+          }" name="player-name" data-ordinalNumber="${ordinalNumber}">
           <br/>
         `;
       }
@@ -129,10 +130,83 @@ export const handleAmountOfPlayers = (mainContainer) => {
     .querySelector("#submit-players")
     .addEventListener("click", () => {
       const allPlayers = newSection.querySelectorAll("[name='player-name']");
-      setAllPlayers(allPlayers);
+      displayAllPlayers(allPlayers, mainContainer);
     });
 };
 
-export const setAllPlayers = (allPlayers) => {
-  console.log(allPlayers);
+export const getOrdinalNumber = (number) => {
+  let ordinalNumber = "first";
+
+  switch (number) {
+    case 1:
+      ordinalNumber = "first";
+      break;
+
+    case 2:
+      ordinalNumber = "second";
+      break;
+
+    case 3:
+      ordinalNumber = "third";
+      break;
+
+    case 4:
+      ordinalNumber = "fourth";
+      break;
+
+    default:
+      ordinalNumber = "first";
+      break;
+  }
+
+  return ordinalNumber;
+};
+
+export const displayAllPlayers = (allPlayers, mainContainer) => {
+  // console.log(allPlayers);
+  // console.log(allPlayers[0].dataset.ordinalnumber);
+  const newArticle = `
+
+    <article class="modal" id="container-info">
+      <p id="card-error-message" class="card__error-message hidden-visible flex">No es un numero valido en Dominó!</p>
+
+      <section id="card" class="card__content">
+      </section>
+
+      <button type="button" id="restart-game-btn" class="card__restart-game flex">Reiniciar partida</button>
+
+    </article>
+  `;
+
+  let text = "";
+  allPlayers.forEach((player) => {
+    text += `
+
+      <!-- A player -->
+      <div class="card__player">
+        
+        <h3 class="card__player-title">${player.value}</h3>
+
+        <ul class="card__counter" id="${player.dataset.ordinalnumber}-list">
+          <li>0</li>
+        </ul>
+
+        <input class="card__add-score no-arrows" type="number" min="1" max="200" id="${player.dataset.ordinalnumber}-player-score" name="${player.dataset.ordinalnumber}-player" placeholder="0" maxlength="3" >
+
+        <div class="card__total flex">
+          <label class="card__total-label" for="total">Total: </label>
+          <input class="card__total-screen no-arrows" type="number" name="total" placeholder="0" maxlength="3" >
+        </div>
+
+        <button type="button" aria-controls="${player.dataset.ordinalnumber}-player-score" class="card__players-btn">Anotar</button>
+
+        <!-- <button type="button" aria-controls="${player.dataset.ordinalnumber}-list" >Remover ultimo apunte</button> -->
+
+        
+      </div>
+    `;
+  });
+
+  mainContainer.innerHTML = newArticle;
+  mainContainer.querySelector("#card").innerHTML = text;
 };
