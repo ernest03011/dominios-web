@@ -36,3 +36,5 @@
 
 - Instead of using labels, I can use radio buttons to make the user select the amont of players and based on it adding multiple names, and then submit it.
 - Once it is submited, the game can start.
+
+- I need to recreate card error message function to use the name of the player which can be provided through display core function where it is called. I can also, create a child node as the first element so P is added and remove from HTML with the disaplay error function.
