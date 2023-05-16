@@ -1,40 +1,37 @@
 // Displaying score to the list
 
 export default function displayScore(button) {
+  const currentPlayer = button.parentNode;
+  const newScore = currentPlayer.querySelector("[name='player-score']").value;
+  const currentPlayerName = currentPlayer.querySelector(
+    ".card__player-title"
+  ).textContent;
+  const scoreList = currentPlayer.querySelector("[name='counter-list']");
+
   let item = document.createElement("li");
 
-  const playerInput = button.getAttribute("aria-controls");
+  if (validNumberInDominio(newScore)) {
+    let itemText = document.createTextNode(newScore);
+    item.appendChild(itemText);
+    scoreList.appendChild(item);
 
-  if (playerInput === "first-player-score") {
-    if (validNumberInDominio(firstPlayerInput.value)) {
-      let itemText = document.createTextNode(firstPlayerInput.value);
-
-      item.appendChild(itemText);
-      player1.appendChild(item);
-    } else {
-      displayError();
-    }
-  } else if (playerInput === "second-player-score") {
-    if (validNumberInDominio(secondPlayerInput.value)) {
-      let itemText = document.createTextNode(secondPlayerInput.value);
-
-      item.appendChild(itemText);
-      player2.appendChild(item);
-    } else {
-      displayError();
-    }
+    clearScore();
+  } else {
+    displayError();
   }
-
-  clearScore();
 }
 
 // Display error message
 
-export const displayError = (cardErrorMessage) => {
-  cardErrorMessage.classList.remove("hidden-visible");
-  setTimeout(() => {
-    cardErrorMessage.classList.add("hidden-visible");
-  }, 3000);
+export const displayError = () => {
+  // cardErrorMessage used to be passed as paramenter and I removed it since I might not needed
+  // This function will be redesigned
+
+  // cardErrorMessage.classList.remove("hidden-visible");
+  // setTimeout(() => {
+  //   cardErrorMessage.classList.add("hidden-visible");
+  // }, 3000);
+  console.log("Score is not valid");
 };
 
 // Resetting the values to 0 in order to start a new Game
@@ -52,11 +49,14 @@ export const startNewgame = (players) => {
 
 // Clear Score board
 
-export const clearScore = (players) => {
+export const clearScore = () => {
   // Players should be an array that has all current players
+  // V2 -- And I need to redesign this function, I might need to have all players to clear the value for all of them
+  // I have also removed plyers which used to be a parameter
 
-  firstPlayerInput.value = "";
-  secondPlayerInput.value = "";
+  // firstPlayerInput.value = "";
+  // secondPlayerInput.value = "";
+  console.log("Value should be all cleared");
 };
 
 // Check if a given value is positive and between 0 and 200
@@ -179,6 +179,7 @@ export const displayAllPlayers = (allPlayers, mainContainer) => {
   `;
 
   let text = "";
+  let allOrdinalNumbers = [];
   allPlayers.forEach((player) => {
     text += `
 
@@ -187,11 +188,11 @@ export const displayAllPlayers = (allPlayers, mainContainer) => {
         
         <h3 class="card__player-title">${player.value}</h3>
 
-        <ul class="card__counter" id="${player.dataset.ordinalnumber}-list">
+        <ul class="card__counter" id="${player.dataset.ordinalnumber}-list" name="counter-list">
           <li>0</li>
         </ul>
 
-        <input class="card__add-score no-arrows" type="number" min="1" max="200" id="${player.dataset.ordinalnumber}-player-score" name="${player.dataset.ordinalnumber}-player" placeholder="0" maxlength="3" >
+        <input class="card__add-score no-arrows" type="number" min="1" max="200" id="${player.dataset.ordinalnumber}-player-score" name="player-score" placeholder="0" maxlength="3" >
 
         <div class="card__total flex">
           <label class="card__total-label" for="total">Total: </label>
@@ -205,8 +206,14 @@ export const displayAllPlayers = (allPlayers, mainContainer) => {
         
       </div>
     `;
+
+    allOrdinalNumbers.push(player.dataset.ordinalNumber);
   });
 
   mainContainer.innerHTML = newArticle;
   mainContainer.querySelector("#card").innerHTML = text;
+
+  mainContainer.querySelectorAll(".card__players-btn").forEach((button) => {
+    button.addEventListener("click", () => displayScore(button));
+  });
 };
