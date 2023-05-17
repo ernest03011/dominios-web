@@ -134,11 +134,12 @@ export const handleAmountOfPlayers = (mainContainer) => {
         let item = {};
         item.name = player.value;
         item.ordinalNumber = player.dataset.ordinalnumber;
+        item.score = [0];
         allPlayers.push(item);
       });
 
-      displayAllPlayers(allPlayers, mainContainer);
       saveAllPlayers(allPlayers);
+      displayAllPlayers(allPlayers, mainContainer);
     });
 };
 
@@ -188,7 +189,13 @@ export const displayAllPlayers = (allPlayers, mainContainer) => {
 
   let text = "";
   let allOrdinalNumbers = [];
+  let totalScore = 0;
   allPlayers.forEach((player) => {
+    // I will need to run here a reduce function to take the total value for each players
+    // I can create a function which will receive an array and then it will return the total
+
+    totalScore = calculateTotal(player.score);
+
     text += `
 
       <!-- A player -->
@@ -202,10 +209,8 @@ export const displayAllPlayers = (allPlayers, mainContainer) => {
 
         <input class="card__add-score no-arrows" type="number" min="1" max="200" id="${player.ordinalNumber}-player-score" name="player-score" placeholder="0" maxlength="3" >
 
-        <div class="card__total flex">
-          <label class="card__total-label" for="total">Total: </label>
-          <input class="card__total-screen no-arrows" type="number" name="total" placeholder="0" maxlength="3" >
-        </div>
+        <p class="card__total-info">Total: <span id="total-info">${totalScore}</span></p>
+
 
         <button type="button" aria-controls="${player.ordinalNumber}-player-score" class="card__players-btn">Anotar</button>
 
@@ -221,6 +226,14 @@ export const displayAllPlayers = (allPlayers, mainContainer) => {
   mainContainer.innerHTML = newArticle;
   mainContainer.querySelector("#card").innerHTML = text;
 
+  const allScoreElements = loadAllScores();
+
+  const allLists = mainContainer.querySelectorAll("[name='counter.list']");
+
+  for (let index = 0; index < allScoreElements; index++) {
+    allLists[index].appendChild(allScoreElements[index]);
+  }
+
   mainContainer.querySelectorAll(".card__players-btn").forEach((button) => {
     button.addEventListener("click", () => displayScore(button));
   });
@@ -232,4 +245,38 @@ export const saveAllPlayers = (players) => {
 
 export const getAllPlayers = () => {
   return JSON.parse(localStorage.getItem("players"));
+};
+
+const calculateTotal = (arr) => {
+  // const totalArray = allData;
+  // console.log(totalArray);
+  // console.log(allData);
+
+  const total = arr.reduce((sum, currentScore) => sum + currentScore, 0);
+  console.log(total);
+  return total;
+};
+
+const getAllScore = () => {
+  const players = getAllPlayers();
+  const allScores = [];
+  console.log(players);
+  players.forEach((player) => {
+    allScores.push(player.score);
+  });
+
+  return allScores;
+};
+
+const loadAllScores = () => {
+  const scoreArr = getAllScore();
+
+  let item = document.createElement("li");
+
+  scoreArr.forEach((score) => {
+    let itemText = document.createTextNode(score);
+    item.appendChild(itemText);
+  });
+
+  return item;
 };
