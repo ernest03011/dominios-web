@@ -50,13 +50,9 @@ export const startNewgame = (players) => {
 // Clear Score board
 
 export const clearScore = () => {
-  // Players should be an array that has all current players
-  // V2 -- And I need to redesign this function, I might need to have all players to clear the value for all of them
-  // I have also removed plyers which used to be a parameter
-
-  // firstPlayerInput.value = "";
-  // secondPlayerInput.value = "";
-  console.log("Value should be all cleared");
+  document
+    .querySelectorAll("[name='player-score']")
+    .forEach((score) => (score.value = ""));
 };
 
 // Check if a given value is positive and between 0 and 200
