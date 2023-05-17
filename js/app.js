@@ -129,8 +129,20 @@ export const handleAmountOfPlayers = (mainContainer) => {
   mainContainer
     .querySelector("#submit-players")
     .addEventListener("click", () => {
-      const allPlayers = newSection.querySelectorAll("[name='player-name']");
+      const allPlayersInput = newSection.querySelectorAll(
+        "[name='player-name']"
+      );
+      const allPlayers = [];
+
+      allPlayersInput.forEach((player) => {
+        let item = {};
+        item.name = player.value;
+        item.ordinalNumber = player.dataset.ordinalnumber;
+        allPlayers.push(item);
+      });
+
       displayAllPlayers(allPlayers, mainContainer);
+      saveAllPlayers(allPlayers);
     });
 };
 
@@ -164,7 +176,7 @@ export const getOrdinalNumber = (number) => {
 
 export const displayAllPlayers = (allPlayers, mainContainer) => {
   // console.log(allPlayers);
-  // console.log(allPlayers[0].dataset.ordinalnumber);
+
   const newArticle = `
 
     <article class="modal" id="container-info">
@@ -186,28 +198,28 @@ export const displayAllPlayers = (allPlayers, mainContainer) => {
       <!-- A player -->
       <div class="card__player">
         
-        <h3 class="card__player-title">${player.value}</h3>
+        <h3 class="card__player-title">${player.name}</h3>
 
-        <ul class="card__counter" id="${player.dataset.ordinalnumber}-list" name="counter-list">
+        <ul class="card__counter" id="${player.ordinalNumber}-list" name="counter-list">
           <li>0</li>
         </ul>
 
-        <input class="card__add-score no-arrows" type="number" min="1" max="200" id="${player.dataset.ordinalnumber}-player-score" name="player-score" placeholder="0" maxlength="3" >
+        <input class="card__add-score no-arrows" type="number" min="1" max="200" id="${player.ordinalNumber}-player-score" name="player-score" placeholder="0" maxlength="3" >
 
         <div class="card__total flex">
           <label class="card__total-label" for="total">Total: </label>
           <input class="card__total-screen no-arrows" type="number" name="total" placeholder="0" maxlength="3" >
         </div>
 
-        <button type="button" aria-controls="${player.dataset.ordinalnumber}-player-score" class="card__players-btn">Anotar</button>
+        <button type="button" aria-controls="${player.ordinalNumber}-player-score" class="card__players-btn">Anotar</button>
 
-        <!-- <button type="button" aria-controls="${player.dataset.ordinalnumber}-list" >Remover ultimo apunte</button> -->
+        <!-- <button type="button" aria-controls="${player.ordinalNumber}-list" >Remover ultimo apunte</button> -->
 
         
       </div>
     `;
 
-    allOrdinalNumbers.push(player.dataset.ordinalNumber);
+    allOrdinalNumbers.push(player.ordinalNumber);
   });
 
   mainContainer.innerHTML = newArticle;
@@ -216,4 +228,12 @@ export const displayAllPlayers = (allPlayers, mainContainer) => {
   mainContainer.querySelectorAll(".card__players-btn").forEach((button) => {
     button.addEventListener("click", () => displayScore(button));
   });
+};
+
+export const saveAllPlayers = (players) => {
+  localStorage.setItem("players", JSON.stringify(players));
+};
+
+export const getAllPlayers = () => {
+  return JSON.parse(localStorage.getItem("players"));
 };

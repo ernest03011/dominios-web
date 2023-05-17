@@ -7,6 +7,9 @@ import {
   clearScore,
   validNumberInDominio,
   handleAmountOfPlayers,
+  displayAllPlayers,
+  saveAllPlayers,
+  getAllPlayers,
 } from "./app.js";
 
 // ******* SELECT ITEMS *******
@@ -16,15 +19,13 @@ const mainContainer = document.getElementById("main__container");
 // EXECUTION
 
 window.addEventListener("DOMContentLoaded", () => {
-  // This is just for testing
-  console.log("The page has loaded");
-  testing();
-  handleAmountOfPlayers(mainContainer);
+  const currentPlayers = getAllPlayers();
+  if (currentPlayers) {
+    displayAllPlayers(currentPlayers, mainContainer);
+  } else {
+    console.log("No data was passed");
+    handleAmountOfPlayers(mainContainer);
+  }
 });
 
 // ******** FUNCTIONS ****************
-
-// This is just for testing
-const testing = () => {
-  console.log(validNumberInDominio(24));
-};
