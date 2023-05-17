@@ -38,3 +38,23 @@
 - Once it is submited, the game can start.
 
 - I need to recreate card error message function to use the name of the player which can be provided through display core function where it is called. I can also, create a child node as the first element so P is added and remove from HTML with the disaplay error function.
+
+- In order to work on the total points being displayed, I can change what I used to have and use a paragraph and a spam to diplay it. Then, I can use the li elements value and add it to an array, and then using reduce, It get the total.
+
+- Later on, I will use local storaga, so I need to keep that in mind as well.
+
+- I can create an object with multiple objects where I can stored the name an points in an array.
+
+- Mock data
+
+const calc = {
+player1: {
+name: "Carlos",
+points: [23],
+},
+
+player2: {
+name: "Maria",
+points: [23],
+},
+};
