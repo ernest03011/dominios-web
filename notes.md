@@ -47,14 +47,16 @@
 
 - Mock data
 
+```js
 const calc = {
-player1: {
-name: "Carlos",
-points: [23],
-},
+  player1: {
+    name: "Carlos",
+    points: [23],
+  },
 
-player2: {
-name: "Maria",
-points: [23],
-},
+  player2: {
+    name: "Maria",
+    points: [23],
+  },
 };
+```
