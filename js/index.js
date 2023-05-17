@@ -20,11 +20,11 @@ const mainContainer = document.getElementById("main__container");
 
 window.addEventListener("DOMContentLoaded", () => {
   const currentPlayers = getAllPlayers();
-  if (currentPlayers) {
-    displayAllPlayers(currentPlayers, mainContainer);
-  } else {
+  if (!currentPlayers) {
     console.log("No data was passed");
     handleAmountOfPlayers(mainContainer);
+  } else {
+    displayAllPlayers(currentPlayers, mainContainer);
   }
 });
 
