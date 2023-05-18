@@ -7,6 +7,7 @@ export default function displayScore(button) {
     ".card__player-title"
   ).textContent;
   const scoreList = currentPlayer.querySelector("[name='counter-list']");
+  const totalDisplay = currentPlayer.querySelector("#total-info");
 
   let item = document.createElement("li");
 
@@ -16,6 +17,7 @@ export default function displayScore(button) {
     scoreList.appendChild(item);
 
     addScoreToStorage(currentPlayerName, newScore);
+    handleTotalScore(currentPlayerName, totalDisplay);
 
     clearScore();
   } else {
@@ -196,7 +198,7 @@ export const displayAllPlayers = (allPlayers, mainContainer) => {
     // I will need to run here a reduce function to take the total value for each players
     // I can create a function which will receive an array and then it will return the total
 
-    totalScore = calculateTotal(player.score);
+    // totalScore = calculateTotal(player.score);
 
     text += `
 
@@ -228,13 +230,13 @@ export const displayAllPlayers = (allPlayers, mainContainer) => {
   mainContainer.innerHTML = newArticle;
   mainContainer.querySelector("#card").innerHTML = text;
 
-  const allScoreElements = loadAllScores();
+  // const allScoreElements = loadAllScores();
 
-  const allLists = mainContainer.querySelectorAll("[name='counter.list']");
+  // const allLists = mainContainer.querySelectorAll("[name='counter.list']");
 
-  for (let index = 0; index < allScoreElements; index++) {
-    allLists[index].appendChild(allScoreElements[index]);
-  }
+  // for (let index = 0; index < allScoreElements; index++) {
+  //   allLists[index].appendChild(allScoreElements[index]);
+  // }
 
   mainContainer.querySelectorAll(".card__players-btn").forEach((button) => {
     button.addEventListener("click", () => displayScore(button));
@@ -249,14 +251,19 @@ export const getAllPlayers = () => {
   return JSON.parse(localStorage.getItem("players"));
 };
 
-const calculateTotal = (arr) => {
-  // const totalArray = allData;
-  // console.log(totalArray);
-  // console.log(allData);
+const handleTotalScore = (playerName, totalInput) => {
+  const currPlayers = getAllPlayers();
+  let total = 0;
 
-  const total = arr.reduce((sum, currentScore) => sum + currentScore, 0);
-  console.log(total);
-  return total;
+  currPlayers.forEach((players) => {
+    if (players.name === playerName) {
+      total = players.score.reduce(
+        (sum, currentScore) => sum + Number(currentScore),
+        0
+      );
+    }
+  });
+  totalInput.textContent = total;
 };
 
 const getAllScore = () => {
