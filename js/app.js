@@ -15,6 +15,8 @@ export default function displayScore(button) {
     item.appendChild(itemText);
     scoreList.appendChild(item);
 
+    addScoreToStorage(currentPlayerName, newScore);
+
     clearScore();
   } else {
     displayError();
@@ -279,4 +281,18 @@ const loadAllScores = () => {
   });
 
   return item;
+};
+
+const addScoreToStorage = (playerName, score) => {
+  const currPlayers = getAllPlayers();
+  console.log(currPlayers);
+
+  currPlayers.forEach((players) => {
+    if (players.name === playerName) {
+      players.score.push(score);
+    }
+  });
+
+  console.log(currPlayers);
+  saveAllPlayers(currPlayers);
 };
