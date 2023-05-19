@@ -34,18 +34,16 @@
 
 ### More notes
 
-- Instead of using labels, I can use radio buttons to make the user select the amont of players and based on it adding multiple names, and then submit it.
-- Once it is submited, the game can start.
+- [x] Instead of using labels, I can use radio buttons to make the user select the amont of players and based on it adding multiple names, and then submit it.
+- [x] Once it is submited, the game can start.
 
-- I need to recreate card error message function to use the name of the player which can be provided through display core function where it is called. I can also, create a child node as the first element so P is added and remove from HTML with the disaplay error function.
+- [] I need to recreate card error message function to use the name of the player which can be provided through display core function where it is called. I can also, create a child node as the first element so P is added and remove from HTML with the disaplay error function. And I can add the name of the player where the button was clicked.
 
-- In order to work on the total points being displayed, I can change what I used to have and use a paragraph and a spam to diplay it. Then, I can use the li elements value and add it to an array, and then using reduce, It get the total.
+- [] In order to work on the total points being displayed, I can change what I used to have and use a paragraph and a spam to diplay it. Then, I can use the li elements value and add it to an array, and then using reduce, It get the total.
 
-- Later on, I will use local storaga, so I need to keep that in mind as well.
+-[x] Later on, I will use local storaga, so I need to keep that in mind as well.
 
-- I can create an object with multiple objects where I can stored the name an points in an array.
-
-- Mock data
+-[x] I created an array of objects that have the player name, an array with the score, and the number of the player in ordinal number
 
 ```js
 const calc = {
@@ -60,3 +58,17 @@ const calc = {
   },
 };
 ```
+
+- [] Make sure to remove console logs at the end of the project
+
+- [] Add functionality to load all players score from storage, and this function needs be called when the page is loaded, if and only if, storage does exist
+
+- [] Add functionality to remove last item from the storage, and the list as well, and update the total as well.
+
+- [] Add a button, or checkmark icon, or like a nav, to list rules of the game, and important things to know when interacting in the website
+
+- [ ] Add functionality to start new game, and It can either ask if the same players will be kept ( then clear all score in storage and just display same players with 0 as the score ) or if new players should be added.
+
+- [ ] Add functionality to update the score in the list
+
+- [ ] Add funcionality to show the winner when it gets to 200, displaying name and the final score. Also allow to close pop up (or any alert), and then disable all buttons, and funcionality, only allow to start new Game.
