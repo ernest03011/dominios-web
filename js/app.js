@@ -1,6 +1,5 @@
 // Displaying score to the list
-
-export default function displayScore(button) {
+function displayScore(button) {
   const currentPlayer = button.parentNode;
   const newScore = currentPlayer.querySelector("[name='player-score']").value;
   const currentPlayerName = currentPlayer.querySelector(
@@ -277,17 +276,35 @@ const getAllScore = () => {
   return allScores;
 };
 
-const loadAllScores = () => {
-  const scoreArr = getAllScore();
+export const loadAllScores = (currentPlayers, mainContainer) => {
+  const currCard = mainContainer.querySelector("#card");
+  const players = currCard.querySelectorAll(".card__player");
 
-  let item = document.createElement("li");
+  for (let index = 0; index < players.length; index++) {
+    let currPlayerName = players[index].querySelector(
+      ".card__player-title"
+    ).textContent;
+    let currScoreList = players[index].querySelector("[name='counter-list']");
+    let currTotalDisplay = players[index].querySelector("#total-info");
 
-  scoreArr.forEach((score) => {
-    let itemText = document.createTextNode(score);
-    item.appendChild(itemText);
-  });
+    if (currPlayerName === currentPlayers[index].name) {
+      currentPlayers[index].score.forEach((player) => {
+        if (parseInt(player) !== 0) {
+          console.log(typeof player);
+          console.log(player);
+          let item = document.createElement("li");
+          let itemText = document.createTextNode(player);
+          item.appendChild(itemText);
+          currScoreList.appendChild(item);
+        }
+      });
 
-  return item;
+      handleTotalScore(currPlayerName, currTotalDisplay);
+    } else {
+      alert("Something is not working");
+      setTimeout(handleAmountOfPlayers(mainContainer), 1000);
+    }
+  }
 };
 
 const addScoreToStorage = (playerName, score) => {

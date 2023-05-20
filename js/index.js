@@ -1,15 +1,11 @@
 // Import needed modules
 
-import displayScore from "./app.js";
 import {
-  displayError,
   startNewgame,
-  clearScore,
-  validNumberInDominio,
   handleAmountOfPlayers,
   displayAllPlayers,
-  saveAllPlayers,
   getAllPlayers,
+  loadAllScores,
 } from "./app.js";
 
 // ******* SELECT ITEMS *******
@@ -25,8 +21,7 @@ window.addEventListener("DOMContentLoaded", () => {
     handleAmountOfPlayers(mainContainer);
   } else {
     displayAllPlayers(currentPlayers, mainContainer);
-    // I need a function here to load all scores per name, since this scope is run when
-    // players exists
+    loadAllScores(currentPlayers, mainContainer);
   }
 });
 
