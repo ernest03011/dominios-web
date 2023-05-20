@@ -39,7 +39,7 @@
 
 - [] I need to recreate card error message function to use the name of the player which can be provided through display core function where it is called. I can also, create a child node as the first element so P is added and remove from HTML with the disaplay error function. And I can add the name of the player where the button was clicked.
 
-- [] In order to work on the total points being displayed, I can change what I used to have and use a paragraph and a spam to diplay it. Then, I can use the li elements value and add it to an array, and then using reduce, It get the total.
+- [x] In order to work on the total points being displayed, I can change what I used to have and use a paragraph and a spam to diplay it. Then, I can use the li elements value and add it to an array, and then using reduce, It get the total.
 
 -[x] Later on, I will use local storaga, so I need to keep that in mind as well.
 
