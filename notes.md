@@ -61,7 +61,7 @@ const calc = {
 
 - [] Make sure to remove console logs at the end of the project
 
-- [] Add functionality to load all players score from storage, and this function needs be called when the page is loaded, if and only if, storage does exist
+- [x] Add functionality to load all players score from storage, and this function needs be called when the page is loaded, if and only if, storage does exist
 
 - [] Add functionality to remove last item from the storage, and the list as well, and update the total as well.
 
