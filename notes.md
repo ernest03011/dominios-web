@@ -74,3 +74,5 @@ const calc = {
 - [ ] Add funcionality to show the winner when it gets to 200, displaying name and the final score. Also allow to close pop up (or any alert), and then disable all buttons, and funcionality, only allow to start new Game.
 
 - [ ] Document the project ad the end of it
+
+- [ ] Update the display error to validate instead if the number is equal or less than 0 or if the number is higher than 200 and, then let the user know it should be between 1 and 200.
