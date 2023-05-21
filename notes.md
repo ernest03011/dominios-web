@@ -72,3 +72,5 @@ const calc = {
 - [ ] Add functionality to update the score in the list
 
 - [ ] Add funcionality to show the winner when it gets to 200, displaying name and the final score. Also allow to close pop up (or any alert), and then disable all buttons, and funcionality, only allow to start new Game.
+
+- [ ] Document the project ad the end of it
