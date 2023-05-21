@@ -20,21 +20,28 @@ function displayScore(button) {
 
     clearScore();
   } else {
-    displayError();
+    displayError(currentPlayerName, newScore);
   }
 }
 
 // Display error message
 
-export const displayError = () => {
-  // cardErrorMessage used to be passed as paramenter and I removed it since I might not needed
-  // This function will be redesigned
+export const displayError = (currentPlayerName, newScore) => {
+  const cardErrorMessage = document.getElementById("card-error-message");
 
-  // cardErrorMessage.classList.remove("hidden-visible");
-  // setTimeout(() => {
-  //   cardErrorMessage.classList.add("hidden-visible");
-  // }, 3000);
-  console.log("Score is not valid");
+  if (parseInt(newScore) === 0) {
+    cardErrorMessage.textContent = `El valor ha agregado para la anotacion de ${currentPlayerName} no puede ser 0. El valor debe estar entre 1 y 200`;
+  } else if (!Number.isNaN(newScore)) {
+    cardErrorMessage.textContent = `El valor ha agregado para la anotacion de ${currentPlayerName} contiene letras, simbolos o el campo esta vacio. Agregar el numero a anotar`;
+  } else {
+    cardErrorMessage.textContent = `El valor ha agregado para la anotacion de ${currentPlayerName} es incorrecto`;
+  }
+
+  cardErrorMessage.classList.remove("hidden-visible");
+  setTimeout(() => {
+    cardErrorMessage.classList.add("hidden-visible");
+    clearScore();
+  }, 4000);
 };
 
 // Resetting the values to 0 in order to start a new Game
