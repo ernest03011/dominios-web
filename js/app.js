@@ -338,3 +338,7 @@ const resetAllScores = (scorelists) => {
 
   saveAllPlayers(currPlayers);
 };
+
+const clearStorage = () => {
+  localStorage.clear("plaers");
+};
