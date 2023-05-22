@@ -46,13 +46,13 @@ export const displayError = (currentPlayerName, newScore) => {
 
 // Resetting the values to 0 in order to start a new Game
 
-export const startNewgame = (players) => {
-  // Players should be an array that has all current players
+export const startNewgame = (scorelists) => {
+  // To simulate, I want to start a new game and keep the same players
+  const samePlayers = true;
 
-  let item = `<li>0</li>`;
-
-  player1.innerHTML = item;
-  player2.innerHTML = item;
+  if (samePlayers) {
+    resetAllScores(scorelists);
+  }
 
   clearScore();
 };
@@ -201,11 +201,6 @@ export const displayAllPlayers = (allPlayers, mainContainer) => {
   let allOrdinalNumbers = [];
   let totalScore = 0;
   allPlayers.forEach((player) => {
-    // I will need to run here a reduce function to take the total value for each players
-    // I can create a function which will receive an array and then it will return the total
-
-    // totalScore = calculateTotal(player.score);
-
     text += `
 
       <!-- A player -->
@@ -235,14 +230,14 @@ export const displayAllPlayers = (allPlayers, mainContainer) => {
 
   mainContainer.innerHTML = newArticle;
   mainContainer.querySelector("#card").innerHTML = text;
-
-  // const allScoreElements = loadAllScores();
-
-  // const allLists = mainContainer.querySelectorAll("[name='counter.list']");
-
-  // for (let index = 0; index < allScoreElements; index++) {
-  //   allLists[index].appendChild(allScoreElements[index]);
-  // }
+  mainContainer
+    .querySelector("#restart-game-btn")
+    .addEventListener("click", () => {
+      const scoreLists = mainContainer.querySelectorAll(
+        "[name='counter-list']"
+      );
+      startNewgame(scoreLists);
+    });
 
   mainContainer.querySelectorAll(".card__players-btn").forEach((button) => {
     button.addEventListener("click", () => displayScore(button));
@@ -325,5 +320,21 @@ const addScoreToStorage = (playerName, score) => {
   });
 
   console.log(currPlayers);
+  saveAllPlayers(currPlayers);
+};
+
+const resetAllScores = (scorelists) => {
+  const currPlayers = getAllPlayers();
+  let item = `<li>0</li>`;
+
+  scorelists.forEach((score) => {
+    score.innerHTML = item;
+    score.parentNode.querySelector("#total-info").textContent = 0;
+  });
+
+  currPlayers.forEach((player) => {
+    player.score = [];
+  });
+
   saveAllPlayers(currPlayers);
 };
