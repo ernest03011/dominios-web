@@ -29,8 +29,8 @@ function displayScore(button) {
 export const displayError = (currentPlayerName, newScore) => {
   const cardErrorMessage = document.getElementById("card-error-message");
 
-  if (parseInt(newScore) === 0) {
-    cardErrorMessage.textContent = `El valor ha agregado para la anotacion de ${currentPlayerName} no puede ser 0. El valor debe estar entre 1 y 200`;
+  if (parseInt(newScore) <= 0 || parseInt(newScore) > 200) {
+    cardErrorMessage.textContent = `El valor ha agregado para la anotacion de ${currentPlayerName} tiene que estar entre 1 y 200`;
   } else if (!Number.isNaN(newScore)) {
     cardErrorMessage.textContent = `El valor ha agregado para la anotacion de ${currentPlayerName} contiene letras, simbolos o el campo esta vacio. Agregar el numero a anotar`;
   } else {
