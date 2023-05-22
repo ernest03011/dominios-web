@@ -340,5 +340,5 @@ const resetAllScores = (scorelists) => {
 };
 
 const clearStorage = () => {
-  localStorage.clear("plaers");
+  localStorage.removeItem("players");
 };
