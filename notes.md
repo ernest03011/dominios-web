@@ -76,3 +76,5 @@ const calc = {
 - [ ] Document the project ad the end of it
 
 - [x] Update the display error to validate instead if the number is equal or less than 0 or if the number is higher than 200 and, then let the user know it should be between 1 and 200.
+
+- [] add functionality to validate that all input fields for the player's name are not empty before starting the game
