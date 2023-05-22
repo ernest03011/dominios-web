@@ -46,15 +46,44 @@ export const displayError = (currentPlayerName, newScore) => {
 
 // Resetting the values to 0 in order to start a new Game
 
-export const startNewgame = (scorelists) => {
-  // To simulate, I want to start a new game and keep the same players
-  const samePlayers = true;
+export const startNewgame = (scorelists, mainContainer) => {
+  const divElement = document.createElement("div");
+  const item = `
+    <div class="modal-content">
+      <span class="close">&times;</span>
 
-  if (samePlayers) {
-    resetAllScores(scorelists);
-  }
+      <h2>Favor elegir...</h2>
 
-  clearScore();
+      <button name="reset-game-btn" data-player="same-players" class="modal__btn">Si desea mantener los mismos jugadores</button>
+      <button name="reset-game-btn" data-player="new-players" class="modal__btn">O agregar jugadores nuevamente</button>
+
+    </div>`;
+
+  divElement.innerHTML = item;
+  divElement.setAttribute("id", "reset-game-modal");
+  divElement.setAttribute("class", "modal-modern");
+  mainContainer.appendChild(divElement);
+  divElement.style.display = "block";
+  divElement.querySelector(".close").addEventListener("click", () => {
+    divElement.style.display = "none";
+  });
+
+  divElement.querySelectorAll("[name='reset-game-btn']").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (btn.dataset.player === "same-players") {
+        resetAllScores(scorelists);
+        clearScore();
+        divElement.style.display = "none";
+      } else if (btn.dataset.player === "new-players") {
+        removePlayersFromStorage();
+        handleAmountOfPlayers(mainContainer);
+        divElement.style.display = "none";
+      } else {
+        console.log("You do not have to do anything!");
+        divElement.style.display = "none";
+      }
+    });
+  });
 };
 
 // Clear Score board
@@ -236,7 +265,7 @@ export const displayAllPlayers = (allPlayers, mainContainer) => {
       const scoreLists = mainContainer.querySelectorAll(
         "[name='counter-list']"
       );
-      startNewgame(scoreLists);
+      startNewgame(scoreLists, mainContainer);
     });
 
   mainContainer.querySelectorAll(".card__players-btn").forEach((button) => {

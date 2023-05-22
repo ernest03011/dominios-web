@@ -1,7 +1,6 @@
 // Import needed modules
 
 import {
-  startNewgame,
   handleAmountOfPlayers,
   displayAllPlayers,
   getAllPlayers,
