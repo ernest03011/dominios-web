@@ -67,7 +67,7 @@ const calc = {
 
 - [] Add a button, or checkmark icon, or like a nav, to list rules of the game, and important things to know when interacting in the website
 
-- [ ] Add functionality to start new game, and It can either ask if the same players will be kept ( then clear all score in storage and just display same players with 0 as the score ) or if new players should be added.
+- [x] Add functionality to start new game, and It can either ask if the same players will be kept ( then clear all score in storage and just display same players with 0 as the score ) or if new players should be added.
 
 - [ ] Add functionality to update the score in the list
 
