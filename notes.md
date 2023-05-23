@@ -80,3 +80,5 @@ const calc = {
 - [] add functionality to validate that all input fields for the player's name are not empty before starting the game
 
 - [] add functionality to disable input while error message is being displayed.
+
+- [] add icons to edit, and delete to each score so I can add events. For editing, I can use the replace note/elemente and update that value in the local storage using a map/filter. For deleting, I can take that elemente and remove it and then delete from the storage as well. By comparing the score list array-like and the array for the score in the storage, I can make it match the same index.
