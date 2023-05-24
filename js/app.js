@@ -286,6 +286,7 @@ const handleTotalScore = (playerName, totalInput) => {
   let total = 0;
   const container = document.getElementById("container-info");
   const pElement = container.firstElementChild;
+  const cardMessage = document.getElementById("card-message");
 
   currPlayers.forEach((players) => {
     if (players.name === playerName) {
@@ -304,11 +305,10 @@ const handleTotalScore = (playerName, totalInput) => {
       button.classList.add("hidden-visible");
     });
 
-    let item = document.createElement("p");
+    cardMessage.style.color = "blue";
+    cardMessage.style.display = "block";
     let itemText = `El juego ha terminado, Felicidades ${playerName}. Hacer clic en reiniciar partida para seguir juando`;
-    item.innerHTML = itemText;
-
-    container.replaceChild(item, pElement);
+    cardMessage.innerHTML = itemText;
   } else {
     totalInput.textContent = total;
   }
