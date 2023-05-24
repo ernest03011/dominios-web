@@ -58,6 +58,7 @@ export const startNewgame = (scorelists, mainContainer) => {
       <button name="reset-game-btn" data-player="new-players" class="modal__btn">O agregar jugadores nuevamente</button>
 
     </div>`;
+  const cardMessage = document.getElementById("card-message");
 
   divElement.innerHTML = item;
   divElement.setAttribute("id", "reset-game-modal");
@@ -70,10 +71,19 @@ export const startNewgame = (scorelists, mainContainer) => {
 
   divElement.querySelectorAll("[name='reset-game-btn']").forEach((btn) => {
     btn.addEventListener("click", () => {
+      if (!cardMessage.classList["hidden-visible"]) {
+        cardMessage.classList.add("hidden-visible");
+        cardMessage.style.color = "red";
+      }
+
       if (btn.dataset.player === "same-players") {
         resetAllScores(scorelists);
         clearScore();
         divElement.style.display = "none";
+
+        document.querySelectorAll(".card__players-btn").forEach((button) => {
+          button.classList.remove("hidden-visible");
+        });
       } else if (btn.dataset.player === "new-players") {
         removePlayersFromStorage();
         handleAmountOfPlayers(mainContainer);
@@ -306,7 +316,7 @@ const handleTotalScore = (playerName, totalInput) => {
     });
 
     cardMessage.style.color = "blue";
-    cardMessage.style.display = "block";
+    cardMessage.classList.remove("hidden-visible");
     let itemText = `El juego ha terminado, Felicidades ${playerName}. Hacer clic en reiniciar partida para seguir juando`;
     cardMessage.innerHTML = itemText;
   } else {
