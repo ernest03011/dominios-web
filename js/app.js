@@ -284,6 +284,8 @@ export const getAllPlayers = () => {
 const handleTotalScore = (playerName, totalInput) => {
   const currPlayers = getAllPlayers();
   let total = 0;
+  const container = document.getElementById("container-info");
+  const pElement = container.firstElementChild;
 
   currPlayers.forEach((players) => {
     if (players.name === playerName) {
@@ -293,7 +295,23 @@ const handleTotalScore = (playerName, totalInput) => {
       );
     }
   });
-  totalInput.textContent = total;
+
+  if (total >= 200) {
+    totalInput.textContent = total;
+    alert(`Felicidades ${playerName}. Has ganado la partida`);
+
+    document.querySelectorAll(".card__players-btn").forEach((button) => {
+      button.classList.add("hidden-visible");
+    });
+
+    let item = document.createElement("p");
+    let itemText = `El juego ha terminado, Felicidades ${playerName}. Hacer clic en reiniciar partida para seguir juando`;
+    item.innerHTML = itemText;
+
+    container.replaceChild(item, pElement);
+  } else {
+    totalInput.textContent = total;
+  }
 };
 
 const getAllScore = () => {
