@@ -27,7 +27,7 @@ function displayScore(button) {
 // Display error message
 
 export const displayError = (currentPlayerName, newScore) => {
-  const cardErrorMessage = document.getElementById("card-error-message");
+  const cardErrorMessage = document.getElementById("card-message");
 
   if (parseInt(newScore) <= 0 || parseInt(newScore) > 200) {
     cardErrorMessage.textContent = `El valor ha agregado para la anotacion de ${currentPlayerName} tiene que estar entre 1 y 200`;
@@ -216,7 +216,7 @@ export const displayAllPlayers = (allPlayers, mainContainer) => {
   const newArticle = `
 
     <article class="modal" id="container-info">
-      <p id="card-error-message" class="card__error-message hidden-visible flex">No es un numero valido en Dominó!</p>
+      <p id="card-message" class="card__message hidden-visible flex">No es un numero valido en Dominó!</p>
 
       <section id="card" class="card__content">
       </section>

@@ -176,7 +176,7 @@ input[type="number"]{
   border-radius: 1.5rem;
 }
 
-.card__error-message{
+.card__message{
   color: red;
   background-color: var(--primary-clr);
   font-size: var(--fs-3);
