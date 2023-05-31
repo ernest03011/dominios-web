@@ -7,21 +7,19 @@ import {
   loadAllScores,
 } from "./app.js";
 
+import displayMessage from "./factory.js";
+
+import { GameManager } from "./gameManager.js";
+
 // ******* SELECT ITEMS *******
 
-const mainContainer = document.getElementById("main__container");
+const container = document.getElementById("card");
 
 // EXECUTION
 
 window.addEventListener("DOMContentLoaded", () => {
-  const currentPlayers = getAllPlayers();
-  if (!currentPlayers) {
-    console.log("No data was passed");
-    handleAmountOfPlayers(mainContainer);
-  } else {
-    displayAllPlayers(currentPlayers, mainContainer);
-    loadAllScores(currentPlayers, mainContainer);
-  }
+  const gameManager = new GameManager();
+  gameManager.initializeGame(container);
 });
 
 // ******** FUNCTIONS ****************
