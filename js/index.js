@@ -17,9 +17,11 @@ const container = document.getElementById("card");
 
 // EXECUTION
 
-window.addEventListener("DOMContentLoaded", () => {
+async function initApp() {
   const gameManager = new GameManager();
   gameManager.initializeGame(container);
-});
+}
+
+window.addEventListener("DOMContentLoaded", initApp);
 
 // ******** FUNCTIONS ****************
