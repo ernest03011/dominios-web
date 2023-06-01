@@ -1,3 +1,4 @@
+import { Player } from "./player.js";
 export default function displayMessage() {
   const el = document.getElementById("card-message");
 
@@ -45,4 +46,8 @@ export function getOrdinalNumber(number) {
   };
 
   return ordinalNumber[number] || "first";
+}
+
+export function createPlayer(name) {
+  return new Player(name);
 }
