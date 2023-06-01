@@ -35,3 +35,14 @@ export function createElement(type) {
     },
   };
 }
+
+export function getOrdinalNumber(number) {
+  const ordinalNumber = {
+    1: "first",
+    2: "second",
+    3: "third",
+    4: "fourth",
+  };
+
+  return ordinalNumber[number] || "first";
+}
