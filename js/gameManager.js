@@ -159,16 +159,17 @@ export class GameManager {
       .querySelector("#restart-game-btn")
       .addEventListener("click", this.restartGame);
 
-    this.#container
-      .querySelectorAll(".card__players-btn")
-      .forEach((button) => button.addEventListener("click", this.displayScore));
+    this.#container.querySelectorAll(".card__players-btn").forEach((button) => {
+      const parentCard = button.parentNode;
+      button.addEventListener("click", this.displayScore(parentCard));
+    });
   }
 
   restartGame() {
     console.log("Restart game was clicked!");
   }
 
-  displayScore() {
+  displayScore(parentCard) {
     console.log("DisplayScore was clicked");
   }
 
