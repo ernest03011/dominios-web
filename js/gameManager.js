@@ -1,5 +1,5 @@
 import displayMessage from "./factory.js";
-import { createElement, getOrdinalNumber } from "./factory.js";
+import { createElement, getOrdinalNumber, createPlayer } from "./factory.js";
 
 export class GameManager {
   #players;
@@ -11,8 +11,9 @@ export class GameManager {
     this.#currentPlayers = [];
   }
 
-  setPlayers(players) {
-    this.#players.push(players);
+  setPlayers(name) {
+    const player = createPlayer(name);
+    this.#players.push(player);
   }
   getPlayers() {
     return this.#players;
@@ -94,16 +95,86 @@ export class GameManager {
         });
 
         this.saveToLocalStorage(allPlayers);
+        this.startGame();
       });
   }
 
-  startGame() {}
+  startGame() {
+    const newArticle = `
+      <article class="modal" id="container-info">
+        <p id="card-message" class="card__message hidden-visible flex">No es un numero valido en Dominó!</p>
 
-  restartGame() {}
+        <section id="card" class="card__content">
+        </section>
+
+        <button type="button" id="restart-game-btn" class="card__restart-game flex">Reiniciar partida</button>
+
+      </article>
+    `;
+
+    this.#container.innerHTML = newArticle;
+
+    let text = "";
+
+    for (let index = 0; index < this.#currentPlayers.length; index++) {
+      text += `
+  
+        <!-- A player -->
+        <div class="card__player">
+          
+          <h3 class="card__player-title">${
+            this.#currentPlayers[index].name
+          }</h3>
+  
+          <ul class="card__counter" id="${
+            this.#currentPlayers[index].ordinalNumber
+          }-list" name="counter-list">
+            <li>0</li>
+          </ul>
+  
+          <input class="card__add-score no-arrows" type="number" min="1" max="200" id="${
+            this.#currentPlayers[index].ordinalNumber
+          }-player-score" name="player-score" placeholder="0" maxlength="3" >
+  
+          <p class="card__total-info">Total: <span id="total-info">${this.#players[
+            index
+          ].getScore()}</span></p>
+  
+  
+          <button type="button" aria-controls="${
+            this.#currentPlayers[index].ordinalNumber
+          }-player-score" class="card__players-btn">Anotar</button>
+  
+          <!-- <button type="button" aria-controls="${
+            this.#currentPlayers[index].ordinalNumber
+          }-list" >Remover ultimo apunte</button> -->
+  
+          
+        </div>
+      `;
+    }
+
+    this.#container.querySelector("#card").innerHTML = text;
+    this.#container
+      .querySelector("#restart-game-btn")
+      .addEventListener("click", this.restartGame);
+
+    this.#container
+      .querySelectorAll(".card__players-btn")
+      .forEach((button) => button.addEventListener("click", this.displayScore));
+  }
+
+  restartGame() {
+    console.log("Restart game was clicked!");
+  }
+
+  displayScore() {
+    console.log("DisplayScore was clicked");
+  }
 
   saveToLocalStorage(allPlayers) {
     localStorage.setItem("players", JSON.stringify(allPlayers));
-    this.#currentPlayers.push(allPlayers);
+    this.#currentPlayers = allPlayers;
   }
 
   getFromLocalStorage() {
