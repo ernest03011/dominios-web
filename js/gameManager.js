@@ -1,16 +1,17 @@
 import displayMessage from "./factory.js";
-import { createElement } from "./factory.js";
+import { createElement, getOrdinalNumber } from "./factory.js";
 
 export class GameManager {
   #players;
   #currentPlayer;
+  #container;
 
   constructor() {
-    this.#players = "";
+    this.#players = [];
   }
 
   setPlayers(players) {
-    this.#players = players;
+    this.#players.push(players);
   }
   getPlayers() {
     return this.#players;
@@ -22,8 +23,27 @@ export class GameManager {
   getCurrentPlayer() {
     return this.#currentPlayer;
   }
+  getPlayersNameFromInput(radioBtn) {
+    const numPlayer = Number(radioBtn.value);
+    let text = "";
+
+    for (let index = 0; index < numPlayer; index++) {
+      const ordinalNumber = getOrdinalNumber(index + 1);
+
+      text += `
+      <p>Nombre del Jugador NO. ${index + 1}: </p>
+      <input type="text" placeholder="Agregar Nombre" id="player${
+        index + 1
+      }" name="player-name" data-ordinalNumber="${ordinalNumber}">
+      <br/>
+    `;
+    }
+
+    this.#container.querySelector("#card-players-info").innerHTML = text;
+  }
 
   initializeGame(container) {
+    this.#container = container;
     const item = `
       <article class="modal" id="container-info">
 
@@ -53,13 +73,42 @@ export class GameManager {
     container.innerHTML = item;
     container.setAttribute("class", "modal-modern");
     container.style.display = "block";
+
+    container.querySelectorAll("[name='players_total']").forEach((radioBtn) => {
+      radioBtn.addEventListener("click", () => {
+        this.getPlayersNameFromInput(radioBtn);
+      });
+    });
+
+    this.#container
+      .querySelector("#submit-players")
+      .addEventListener("click", () => {
+        const allPlayersInput = this.#container.querySelectorAll(
+          "[name='player-name']"
+        );
+
+        const allPlayers = [];
+
+        allPlayersInput.forEach((player) => {
+          let item = {};
+          item.name = player.value;
+          this.setPlayers(player.value);
+          item.ordinalNumber = player.dataset.ordinalNumber;
+          item.score = [0];
+          allPlayers.push(item);
+        });
+
+        this.saveToLocalStorage(allPlayers);
+      });
   }
 
   startGame() {}
 
   restartGame() {}
 
-  saveToLocalStorage() {}
+  saveToLocalStorage(allPlayers) {
+    localStorage.setItem("players", JSON.stringify(allPlayers));
+  }
 
   loadFromLocalStorage() {}
 }
