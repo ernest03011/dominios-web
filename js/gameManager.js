@@ -184,7 +184,25 @@ export class GameManager {
 
   loadFromLocalStorage() {}
 
-  handleWinner() {
-    console.log("Handling winners");
+  handleWinner(total) {
+    const isAWinner = false;
+
+    if (total >= 200) {
+      alert(`Felicidades JUAN. Has ganado la partida`);
+      this.#container
+        .querySelectorAll(".card__players-btn")
+        .forEach((button) => button.classList.add("hidden-visible"));
+
+      const msg = displayMessage();
+      const text = `El juego ha terminado, Felicidades JUAN. Hacer clic en reiniciar partida para seguir juando`;
+
+      msg.display("blue", text);
+
+      isAWinner = true;
+    } else {
+      isAWinner = false;
+    }
+
+    return isAWinner;
   }
 }
