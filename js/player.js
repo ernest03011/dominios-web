@@ -1,4 +1,4 @@
-export class player {
+export class Player {
   #name;
   #scores;
 
