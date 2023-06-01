@@ -15,7 +15,9 @@ export class Player {
     this.name = name;
   }
 
-  addScore(score) {}
+  addScore(score) {
+    this.#scores.push(score);
+  }
 
   editScore(index, score) {}
 
