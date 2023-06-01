@@ -110,5 +110,9 @@ export class GameManager {
     localStorage.setItem("players", JSON.stringify(allPlayers));
   }
 
+  getFromLocalStorage() {
+    return JSON.parse(localStorage.getItem("players"));
+  }
+
   loadFromLocalStorage() {}
 }
