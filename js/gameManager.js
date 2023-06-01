@@ -3,11 +3,12 @@ import { createElement, getOrdinalNumber } from "./factory.js";
 
 export class GameManager {
   #players;
-  #currentPlayer;
+  #currentPlayers;
   #container;
 
   constructor() {
     this.#players = [];
+    this.#currentPlayers = [];
   }
 
   setPlayers(players) {
@@ -17,12 +18,6 @@ export class GameManager {
     return this.#players;
   }
 
-  setCurrentPlayer(currentPlayer) {
-    this.#currentPlayer = currentPlayer;
-  }
-  getCurrentPlayer() {
-    return this.#currentPlayer;
-  }
   getPlayersNameFromInput(radioBtn) {
     const numPlayer = Number(radioBtn.value);
     let text = "";
@@ -108,6 +103,7 @@ export class GameManager {
 
   saveToLocalStorage(allPlayers) {
     localStorage.setItem("players", JSON.stringify(allPlayers));
+    this.#currentPlayers.push(allPlayers);
   }
 
   getFromLocalStorage() {
