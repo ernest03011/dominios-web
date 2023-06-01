@@ -183,4 +183,8 @@ export class GameManager {
   }
 
   loadFromLocalStorage() {}
+
+  handleWinner() {
+    console.log("Handling winners");
+  }
 }
