@@ -4,7 +4,7 @@ export class Player {
 
   constructor(name) {
     this.#name = name;
-    this.#scores = [];
+    this.#scores = [0];
   }
 
   getPlayerName() {
