@@ -16,23 +16,28 @@ export default function displayMessage() {
 }
 
 export function createElement(type) {
-  const el = document.createElement(type);
+  const fragment = document.createDocumentFragment();
+  const element = document.createElement(type);
+  fragment.appendChild(element);
   return {
-    el,
+    fragment,
     setInnetHTML(inner) {
-      el.innerHTML = inner;
+      element.innerHTML = inner;
     },
     setColor(color) {
-      el.style.color = color;
+      element.style.color = color;
     },
     setText(text) {
-      el.style.innerText = text;
+      element.textContent = text;
     },
     setAttribute(attr, name) {
-      el.setAttribute(attr, name);
+      element.setAttribute(attr, name);
     },
     removeClass(className) {
-      el.classList.remove(className);
+      element.classList.remove(className);
+    },
+    appendChild(child) {
+      element.appendChild(child);
     },
   };
 }
