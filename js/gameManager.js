@@ -161,7 +161,9 @@ export class GameManager {
 
     this.#container.querySelectorAll(".card__players-btn").forEach((button) => {
       const parentCard = button.parentNode;
-      button.addEventListener("click", this.displayScore(parentCard));
+      button.addEventListener("click", () => {
+        this.displayScore(parentCard);
+      });
     });
   }
 
