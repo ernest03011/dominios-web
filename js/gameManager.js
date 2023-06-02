@@ -1,5 +1,6 @@
 import displayMessage from "./factory.js";
 import { createElement, getOrdinalNumber, createPlayer } from "./factory.js";
+import { Player } from "./player.js";
 
 export class GameManager {
   #players;
@@ -173,6 +174,25 @@ export class GameManager {
 
   displayScore(parentCard) {
     console.log("DisplayScore was clicked");
+
+    const newScore = parentCard.querySelector("[name='player-score']").value;
+    const currPlayerName = parentCard.querySelector(
+      ".card__player-title"
+    ).textContent;
+    const scoreList = parentCard.querySelector("[name='counter-list']");
+    const totalDisplay = parentCard.querySelector("#total-info");
+
+    const item = createElement("li");
+    const isAValidScore = Player.isValidScore(newScore);
+
+    if (isAValidScore) {
+      item.setText(newScore);
+      scoreList.appendChild(item.fragment);
+    } else {
+      const msg = displayMessage();
+      const errMsg = "This is not working!";
+      msg.display("red", errMsg);
+    }
 
     this.clearInput();
   }
