@@ -19,7 +19,13 @@ const container = document.getElementById("card");
 
 async function initApp() {
   const gameManager = new GameManager();
-  gameManager.initializeGame(container);
+  const hasPlayers = gameManager.getFromLocalStorage();
+
+  if (hasPlayers) {
+    console.log("Load the players!");
+  } else {
+    gameManager.initializeGame(container);
+  }
 }
 
 window.addEventListener("DOMContentLoaded", initApp);
