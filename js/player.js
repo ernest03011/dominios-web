@@ -33,7 +33,7 @@ export class Player {
     return total;
   }
 
-  isValidScore(score) {
+  static isValidScore(score) {
     const re = /^(?:[1-9]|[1-9][0-9]|1[0-9]{2}|200)$/;
     return re.test(score);
   }
