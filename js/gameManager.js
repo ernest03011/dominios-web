@@ -173,6 +173,8 @@ export class GameManager {
 
   displayScore(parentCard) {
     console.log("DisplayScore was clicked");
+
+    this.clearInput();
   }
 
   saveToLocalStorage(allPlayers) {
@@ -206,5 +208,11 @@ export class GameManager {
     }
 
     return isAWinner;
+  }
+
+  clearInput() {
+    this.#container
+      .querySelectorAll("[name='player-score']")
+      .forEach((scoreInput) => (scoreInput.value = ""));
   }
 }
