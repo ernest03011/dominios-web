@@ -240,9 +240,13 @@ export class GameManager {
 
   handleScoreStorage(playerName, score) {
     const currPlayers = this.getFromLocalStorage();
-    currPlayers.forEach((player) => {
-      if (player.name === playerName) player.score.push(score);
-    });
+
+    for (let index = 0; index < currPlayers.length; index++) {
+      if (currPlayers[index].name === playerName) {
+        currPlayers[index].score.push(score);
+        this.#players[index].addScore(score);
+      }
+    }
 
     this.saveToLocalStorage(currPlayers);
   }
