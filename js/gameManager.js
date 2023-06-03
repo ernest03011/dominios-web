@@ -208,7 +208,36 @@ export class GameManager {
     return JSON.parse(localStorage.getItem("players"));
   }
 
-  loadFromLocalStorage() {}
+  loadFromLocalStorage(container) {
+    // const currCard = container.querySelector("#card");
+    const players = container.querySelectorAll(".card__player");
+
+    this.#currentPlayers = this.getFromLocalStorage();
+    console.log(this.#currentPlayers);
+    console.log(players);
+
+    for (let index = 0; index < players.length; index++) {
+      const currPlayerName = players[index].querySelector(
+        ".card__player-title"
+      );
+      const currScoreList = players[index].querySelector(
+        "[name='counter-list']"
+      );
+      const currTotalDisplay = players[index].querySelector("#total-info");
+
+      if (currPlayerName === this.#currentPlayers[index].name) {
+        this.#currentPlayers[index].score.forEach((score) => {
+          if (Number(score) !== 0) {
+            const item = createElement("li");
+            item.setText(score);
+            currScoreList.appendChild(item.fragment);
+          }
+        });
+
+        this.handleTotalScore(currPlayerName, currTotalDisplay);
+      }
+    }
+  }
 
   handleWinner(total) {
     const isAWinner = false;

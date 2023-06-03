@@ -23,6 +23,7 @@ async function initApp() {
 
   if (hasPlayers) {
     console.log("Load the players!");
+    gameManager.loadFromLocalStorage(container);
   } else {
     gameManager.initializeGame(container);
   }
