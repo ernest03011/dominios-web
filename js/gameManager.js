@@ -209,12 +209,15 @@ export class GameManager {
   }
 
   loadFromLocalStorage(container) {
-    // const currCard = container.querySelector("#card");
+    this.#container = container;
     const players = container.querySelectorAll(".card__player");
 
     this.#currentPlayers = this.getFromLocalStorage();
-    console.log(this.#currentPlayers);
-    console.log(players);
+    this.#currentPlayers.forEach((player) => {
+      this.setPlayers(player.name);
+    });
+
+    this.startGame();
 
     for (let index = 0; index < players.length; index++) {
       const currPlayerName = players[index].querySelector(
