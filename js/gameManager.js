@@ -188,6 +188,7 @@ export class GameManager {
     if (isAValidScore) {
       item.setText(newScore);
       scoreList.appendChild(item.fragment);
+      this.handleScoreStorage(currPlayerName, newScore);
     } else {
       const msg = displayMessage();
       const errMsg = "This is not working!";
@@ -234,5 +235,14 @@ export class GameManager {
     this.#container
       .querySelectorAll("[name='player-score']")
       .forEach((scoreInput) => (scoreInput.value = ""));
+  }
+
+  handleScoreStorage(playerName, score) {
+    const currPlayers = this.getFromLocalStorage();
+    currPlayers.forEach((player) => {
+      if (player.name === playerName) player.score.push(score);
+    });
+
+    this.saveToLocalStorage(currPlayers);
   }
 }
