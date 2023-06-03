@@ -189,6 +189,7 @@ export class GameManager {
       item.setText(newScore);
       scoreList.appendChild(item.fragment);
       this.handleScoreStorage(currPlayerName, newScore);
+      this.handleTotalScore(currPlayerName, totalDisplay);
     } else {
       const msg = displayMessage();
       const errMsg = "This is not working!";
@@ -244,5 +245,13 @@ export class GameManager {
     });
 
     this.saveToLocalStorage(currPlayers);
+  }
+
+  handleTotalScore(playerName, totalDisplay) {
+    this.#players.forEach((player) => {
+      if (player.getPlayerName() === playerName) {
+        totalDisplay.textContent = player.calculateTotal();
+      }
+    });
   }
 }
