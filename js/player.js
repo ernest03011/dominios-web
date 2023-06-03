@@ -29,7 +29,10 @@ export class Player {
 
   calculateTotal() {
     let total = 0;
-    this.#scores.reduce((sum, currentScore) => sum + Number(currentScore), 0);
+    total = this.#scores.reduce(
+      (sum, currentScore) => sum + Number(currentScore),
+      0
+    );
     return total;
   }
 
