@@ -202,7 +202,7 @@ export class GameManager {
               btn.classList.remove("hidden-visible");
             });
           } else if (btn.dataset.player === "new-players") {
-            this.removePlayersFromLocalStorage();
+            this.removePlayersFromStorage();
             this.initializeGame(this.#container);
             divElement.setDisplay("none");
           }
@@ -344,5 +344,9 @@ export class GameManager {
     }
 
     this.saveToLocalStorage(this.#currentPlayers);
+  }
+
+  removePlayersFromStorage() {
+    localStorage.removeItem("players");
   }
 }
