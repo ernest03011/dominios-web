@@ -194,7 +194,7 @@ export class GameManager {
       .forEach((btn) => {
         btn.addEventListener("click", () => {
           if (btn.dataset.player === "same-players") {
-            // Need to reset score
+            this.resetAllScores();
             this.clearInput();
             divElement.setDisplay("none");
 
@@ -329,7 +329,7 @@ export class GameManager {
     });
   }
 
-  removePlayersFromLocalStorage() {
+  resetAllScores() {
     let item = `<li>0</li>`;
     this.#container
       .querySelectorAll("[name='counter-list']")
