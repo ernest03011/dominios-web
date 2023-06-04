@@ -1,14 +1,5 @@
 // Import needed modules
 
-import {
-  handleAmountOfPlayers,
-  displayAllPlayers,
-  getAllPlayers,
-  loadAllScores,
-} from "./app.js";
-
-import displayMessage from "./factory.js";
-
 import { GameManager } from "./gameManager.js";
 
 // ******* SELECT ITEMS *******
