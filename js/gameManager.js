@@ -328,4 +328,21 @@ export class GameManager {
       }
     });
   }
+
+  removePlayersFromLocalStorage() {
+    let item = `<li>0</li>`;
+    this.#container
+      .querySelectorAll("[name='counter-list']")
+      .forEach((scoreList) => {
+        scoreList.innerHTML = item;
+        scoreList.parentNode.querySelector("#total-info").textContent = 0;
+      });
+
+    for (let index = 0; index < this.#currentPlayers.length; index++) {
+      this.#currentPlayers[index].score = [];
+      this.#players[index].resetScore();
+    }
+
+    this.saveToLocalStorage(this.#currentPlayers);
+  }
 }
