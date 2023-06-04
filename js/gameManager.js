@@ -203,6 +203,7 @@ export class GameManager {
             });
           } else if (btn.dataset.player === "new-players") {
             this.removePlayersFromStorage();
+            this.#players = [];
             this.initializeGame(this.#container);
             divElement.setDisplay("none");
           }
