@@ -39,6 +39,9 @@ export function createElement(type) {
     appendChild(child) {
       element.appendChild(child);
     },
+    setDisplay(attr) {
+      element.style.display = attr;
+    },
   };
 }
 
