@@ -170,6 +170,44 @@ export class GameManager {
 
   restartGame() {
     console.log("Restart game was clicked!");
+    const divElement = createElement("div");
+
+    const item = `
+    <div class="modal-content">
+      <span class="close">&times;</span>
+
+      <h2>Favor elegir...</h2>
+
+      <button name="reset-game-btn" data-player="same-players" class="modal__btn">Si desea mantener los mismos jugadores</button>
+      <button name="reset-game-btn" data-player="new-players" class="modal__btn">O agregar jugadores nuevamente</button>
+
+    </div>`;
+
+    divElement.setInnetHTML(item);
+    divElement.setAttribute("id", "reset-game-modal");
+    divElement.setAttribute("class", "modal-modern");
+    divElement.setDisplay("block");
+    this.#container.appendChild(divElement.fragment);
+
+    this.#container
+      .querySelectorAll("[name='reset-game-btn']")
+      .forEach((btn) => {
+        btn.addEventListener("click", () => {
+          if (btn.dataset.player === "same-players") {
+            // Need to reset score
+            this.clearInput();
+            divElement.setDisplay("none");
+
+            document.querySelectorAll(".card__players-btn").forEach((btn) => {
+              btn.classList.remove("hidden-visible");
+            });
+          } else if (btn.dataset.player === "new-players") {
+            this.removePlayersFromLocalStorage();
+            this.initializeGame(this.#container);
+            divElement.setDisplay("none");
+          }
+        });
+      });
   }
 
   displayScore(parentCard) {
