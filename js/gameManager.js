@@ -283,7 +283,7 @@ export class GameManager {
   }
 
   handleWinner(total) {
-    const isAWinner = false;
+    let isAWinner = false;
 
     if (total >= 200) {
       alert(`Felicidades JUAN. Has ganado la partida`);
