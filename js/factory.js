@@ -10,7 +10,7 @@ export default function displayMessage() {
 
       setTimeout(() => {
         el.classList.add("hidden-visible");
-      }, 300);
+      }, 2000);
     },
   };
 }
