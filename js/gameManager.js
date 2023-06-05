@@ -175,7 +175,7 @@ export class GameManager {
 
     const item = `
     <div class="modal-content">
-      <span class="close">&times;</span>
+      <span id="close-rstgame-modal" class="close">&times;</span>
 
       <h2>Favor elegir...</h2>
 
@@ -189,6 +189,12 @@ export class GameManager {
     divElement.setAttribute("class", "modal-modern");
     divElement.setDisplay("block");
     this.#container.appendChild(divElement.fragment);
+
+    this.#container
+      .querySelector("#close-rstgame-modal")
+      .addEventListener("click", () => {
+        divElement.setDisplay("none");
+      });
 
     this.#container
       .querySelectorAll("[name='reset-game-btn']")
@@ -324,9 +330,12 @@ export class GameManager {
   }
 
   handleTotalScore(playerName, totalDisplay) {
+    let total = 0;
     this.#players.forEach((player) => {
       if (player.getPlayerName() === playerName) {
-        totalDisplay.textContent = player.calculateTotal();
+        total = player.calculateTotal();
+        totalDisplay.textContent = total;
+        this.handleWinner(total);
       }
     });
   }
