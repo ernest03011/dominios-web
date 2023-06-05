@@ -59,3 +59,30 @@ export function getOrdinalNumber(number) {
 export function createPlayer(name) {
   return new Player(name);
 }
+
+export function inputUtlt(params) {
+  let isValid = true;
+  let isAlphabetic = true;
+  let inputPropelCase = [];
+  const nameRegex = /^[a-zA-Z]+$/; // Regular expression to match only alphabetic characters
+
+  params.forEach((param) => {
+    let item = "";
+    if (!param.value) {
+      isValid = false;
+    } else if (!nameRegex.test(param.value)) {
+      isAlphabetic = false;
+    } else {
+      item = `${param.value[0].toUpperCase()}${param.value
+        .slice(1)
+        .toLowerCase()}`;
+      inputPropelCase.push(item);
+    }
+  });
+
+  return {
+    isValid,
+    isAlphabetic,
+    inputPropelCase,
+  };
+}

@@ -1,5 +1,10 @@
 import displayMessage from "./factory.js";
-import { createElement, getOrdinalNumber, createPlayer } from "./factory.js";
+import {
+  createElement,
+  getOrdinalNumber,
+  createPlayer,
+  inputUtlt,
+} from "./factory.js";
 import { Player } from "./player.js";
 
 export class GameManager {
@@ -31,7 +36,7 @@ export class GameManager {
       <p>Nombre del Jugador NO. ${index + 1}: </p>
       <input type="text" placeholder="Agregar Nombre" id="player${
         index + 1
-      }" name="player-name" data-ordinalNumber="${ordinalNumber}">
+      }" name="player-name" data-ordinalNumber="${ordinalNumber} required">
       <br/>
     `;
     }
@@ -79,24 +84,34 @@ export class GameManager {
 
     this.#container
       .querySelector("#submit-players")
-      .addEventListener("click", () => {
+      .addEventListener("click", (event) => {
         const allPlayersInput = this.#container.querySelectorAll(
           "[name='player-name']"
         );
 
-        const allPlayers = [];
+        const inputUtility = inputUtlt(allPlayersInput);
 
-        allPlayersInput.forEach((player) => {
-          let item = {};
-          item.name = player.value;
-          this.setPlayers(player.value);
-          item.ordinalNumber = player.dataset.ordinalNumber;
-          item.score = [0];
-          allPlayers.push(item);
-        });
+        if (!inputUtility.isValid) {
+          event.preventDefault();
+          console.log("It is empty");
+        } else if (!inputUtility.isAlphabetic) {
+          event.preventDefault();
+          console.log("It has number");
+        } else {
+          const allPlayers = [];
 
-        this.saveToLocalStorage(allPlayers);
-        this.startGame();
+          for (let index = 0; index < allPlayersInput.length; index++) {
+            let item = {};
+            item.name = inputUtility.inputPropelCase[index];
+            this.setPlayers(inputUtility.inputPropelCase[index]);
+            item.ordinalNumber = allPlayersInput[index].dataset.ordinalNumber;
+            item.score = [0];
+            allPlayers.push(item);
+          }
+
+          this.saveToLocalStorage(allPlayers);
+          this.startGame();
+        }
       });
   }
 
