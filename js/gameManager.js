@@ -78,6 +78,7 @@ export class GameManager {
 
     container.querySelectorAll("[name='players_total']").forEach((radioBtn) => {
       radioBtn.addEventListener("click", () => {
+        document.getElementById("submit-players").style.display = "block";
         this.getPlayersNameFromInput(radioBtn);
       });
     });

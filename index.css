@@ -252,6 +252,10 @@ footer{
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+.modal-btn{
+  display: none;
+}
+
 .close {
   color: var(--secondary-clr);
   float: right;
