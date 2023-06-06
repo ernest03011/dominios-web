@@ -90,13 +90,17 @@ export class GameManager {
         );
 
         const inputUtility = inputUtlt(allPlayersInput);
+        const msg = displayMessage();
+        let text = "";
 
         if (!inputUtility.isValid) {
           event.preventDefault();
-          console.log("It is empty");
+          text = "Agregar todos los nombres de los jugadores.";
+          msg.display("red", text);
         } else if (!inputUtility.isAlphabetic) {
           event.preventDefault();
-          console.log("It has number");
+          text = "Agregar solo letras en los nombres";
+          msg.display("red", text);
         } else {
           const allPlayers = [];
 
