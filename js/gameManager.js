@@ -239,8 +239,6 @@ export class GameManager {
   }
 
   displayScore(parentCard) {
-    console.log("DisplayScore was clicked");
-
     const newScore = parentCard.querySelector("[name='player-score']").value;
     const currPlayerName = parentCard.querySelector(
       ".card__player-title"
