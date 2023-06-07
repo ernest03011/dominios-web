@@ -308,17 +308,17 @@ export class GameManager {
     }
   }
 
-  handleWinner(total) {
+  handleWinner(total, name) {
     let isAWinner = false;
 
     if (total >= 200) {
-      alert(`Felicidades JUAN. Has ganado la partida`);
+      alert(`Felicidades ${name}. Has ganado la partida`);
       this.#container
         .querySelectorAll(".card__players-btn")
         .forEach((button) => button.classList.add("hidden-visible"));
 
       const msg = displayMessage();
-      const text = `El juego ha terminado, Felicidades JUAN. Hacer clic en reiniciar partida para seguir juando`;
+      const text = `El juego ha terminado, Felicidades ${name}. Haz clic en reiniciar partida para seguir juando`;
 
       msg.display("blue", text);
 
@@ -355,7 +355,7 @@ export class GameManager {
       if (player.getPlayerName() === playerName) {
         total = player.calculateTotal();
         totalDisplay.textContent = total;
-        this.handleWinner(total);
+        this.handleWinner(total, player.getPlayerName());
       }
     });
   }
