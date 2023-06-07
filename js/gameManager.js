@@ -131,6 +131,18 @@ export class GameManager {
         <button type="button" id="restart-game-btn" class="card__restart-game flex">Reiniciar partida</button>
 
       </article>
+
+      <div id="reset-game-modal" class="modal-modern">
+        <div class="modal-content">
+          <span id="close-rstgame-modal" class="close">&times;</span>
+
+          <h2>Favor elegir...</h2>
+
+          <button name="reset-game-btn" data-player="same-players" class="modal__btn">Si desea mantener los mismos jugadores</button>
+          <button name="reset-game-btn" data-player="new-players" class="modal__btn">O agregar jugadores nuevamente</button>
+
+        </div>
+      </div>
     `;
 
     this.#container.innerHTML = newArticle;
@@ -191,51 +203,31 @@ export class GameManager {
   }
 
   restartGame() {
-    const divElement = createElement("div");
+    const resetGameModal = document.getElementById("reset-game-modal");
+    resetGameModal.style.display = "block";
 
-    const item = `
-    <div class="modal-content">
-      <span id="close-rstgame-modal" class="close">&times;</span>
+    resetGameModal.addEventListener(
+      "click",
+      function (e) {
+        const target = e.target;
+        if (target.id === "close-rstgame-modal") {
+          resetGameModal.style.display = "none";
+        } else if (target.dataset.player === "same-players") {
+          this.resetAllScores();
+          this.clearInput();
+          resetGameModal.style.display = "none";
 
-      <h2>Favor elegir...</h2>
-
-      <button name="reset-game-btn" data-player="same-players" class="modal__btn">Si desea mantener los mismos jugadores</button>
-      <button name="reset-game-btn" data-player="new-players" class="modal__btn">O agregar jugadores nuevamente</button>
-
-    </div>`;
-
-    divElement.setInnetHTML(item);
-    divElement.setAttribute("id", "reset-game-modal");
-    divElement.setAttribute("class", "modal-modern");
-    divElement.setDisplay("block");
-    this.#container.appendChild(divElement.fragment);
-
-    this.#container
-      .querySelector("#close-rstgame-modal")
-      .addEventListener("click", () => {
-        divElement.setDisplay("none");
-      });
-
-    this.#container
-      .querySelectorAll("[name='reset-game-btn']")
-      .forEach((btn) => {
-        btn.addEventListener("click", () => {
-          if (btn.dataset.player === "same-players") {
-            this.resetAllScores();
-            this.clearInput();
-            divElement.setDisplay("none");
-
-            document.querySelectorAll(".card__players-btn").forEach((btn) => {
-              btn.classList.remove("hidden-visible");
-            });
-          } else if (btn.dataset.player === "new-players") {
-            this.removePlayersFromStorage();
-            this.#players = [];
-            this.initializeGame(this.#container);
-            divElement.setDisplay("none");
-          }
-        });
-      });
+          document.querySelectorAll(".card__players-btn").forEach((btn) => {
+            btn.classList.remove("hidden-visible");
+          });
+        } else if (target.dataset.player === "new-players") {
+          this.removePlayersFromStorage();
+          this.#players = [];
+          this.initializeGame(this.#container);
+          resetGameModal.style.display = "none";
+        }
+      }.bind(this)
+    );
   }
 
   displayScore(parentCard) {
