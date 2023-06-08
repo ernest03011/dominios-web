@@ -36,7 +36,7 @@ export class GameManager {
       <p>Nombre del Jugador NO. ${index + 1}: </p>
       <input type="text" placeholder="Agregar Nombre" id="player${
         index + 1
-      }" name="player-name" data-ordinalNumber="${ordinalNumber} required">
+      }" name="player-name" data-ordinalnumber="${ordinalNumber}">
       <br/>
     `;
     }
@@ -109,7 +109,7 @@ export class GameManager {
             let item = {};
             item.name = inputUtility.inputPropelCase[index];
             this.setPlayers(inputUtility.inputPropelCase[index]);
-            item.ordinalNumber = allPlayersInput[index].dataset.ordinalNumber;
+            item.ordinalNumber = allPlayersInput[index].dataset.ordinalnumber;
             item.score = [0];
             allPlayers.push(item);
           }
