@@ -153,7 +153,7 @@ export class GameManager {
       text += `
   
         <!-- A player -->
-        <div class="card__player">
+        <div class="card__player" name="card__player">
           
           <h3 class="card__player-title">${
             this.#currentPlayers[index].name
@@ -281,19 +281,18 @@ export class GameManager {
 
   loadFromLocalStorage(container) {
     this.#container = container;
-    const players = container.querySelectorAll(".card__player");
-
     this.#currentPlayers = this.getFromLocalStorage();
     this.#currentPlayers.forEach((player) => {
       this.setPlayers(player.name);
     });
 
     this.startGame();
+    const players = document.querySelectorAll(".card__player");
 
     for (let index = 0; index < players.length; index++) {
       const currPlayerName = players[index].querySelector(
         ".card__player-title"
-      );
+      ).textContent;
       const currScoreList = players[index].querySelector(
         "[name='counter-list']"
       );
