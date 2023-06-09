@@ -386,15 +386,20 @@ export class GameManager {
             const cardPlayerElm = parentList.parentNode;
             const index = Array.from(parentList.children).indexOf(target);
             const action = prompt("Que deseas hacer? (Editar/Eliminar)");
-            const selectedOption = action.toLocaleLowerCase();
 
-            if (selectedOption === "editar" || selectedOption === "eliminar") {
-              if (selectedOption === "editar") {
-              } else if (selectedOption === "eliminar") {
-                console.log("Toca Eliminar");
+            if (action) {
+              const selectedOption = action.toLocaleLowerCase();
+              if (
+                selectedOption === "editar" ||
+                selectedOption === "eliminar"
+              ) {
+                if (selectedOption === "editar") {
+                } else if (selectedOption === "eliminar") {
+                  console.log("Toca Eliminar");
+                }
+              } else {
+                alert("Intenta nuevamente, favor elegir editar o eliminar!");
               }
-            } else {
-              alert("Intenta nuevamente, favor elegir editar o eliminar!");
             }
           }
         });
