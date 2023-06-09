@@ -394,6 +394,7 @@ export class GameManager {
                 selectedOption === "eliminar"
               ) {
                 if (selectedOption === "editar") {
+                  this.editScore(target, cardPlayerElm, index);
                 } else if (selectedOption === "eliminar") {
                   console.log("Toca Eliminar");
                 }
@@ -404,5 +405,34 @@ export class GameManager {
           }
         });
       });
+  }
+
+  editScore(target, cardPlayerElm, index) {
+    const newScorePoint = prompt("Agregar la nueva anotacion!");
+    if (newScorePoint) {
+      const isAValidScore = Player.isValidScore(newScorePoint);
+      if (isAValidScore) {
+        const currPlayers = this.getFromLocalStorage();
+        const currPlayerName = cardPlayerElm.querySelector(
+          ".card__player-title"
+        ).textContent;
+        const totalInput = cardPlayerElm.querySelector("#total-info");
+        let total = 0;
+
+        currPlayers.forEach((player, i) => {
+          if (player.name === currPlayerName) {
+            player.score[index] = newScorePoint;
+            this.#players[i].editScore(index, newScorePoint);
+            target.textContent = newScorePoint;
+            total = this.#players[i].calculateTotal();
+            totalInput.textContent = total;
+          }
+        });
+
+        this.saveToLocalStorage(currPlayers);
+      } else {
+        alert("Valor incorrecto. Aregar numeros del 1 al 200.");
+      }
+    }
   }
 }
