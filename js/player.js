@@ -19,7 +19,9 @@ export class Player {
     this.#scores.push(score);
   }
 
-  editScore(index, score) {}
+  editScore(index, score) {
+    this.#scores[index] = score;
+  }
 
   deleteScore(index) {}
 
