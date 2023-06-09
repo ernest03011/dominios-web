@@ -290,6 +290,7 @@ export class GameManager {
             const item = createElement("li");
             item.setText(score);
             currScoreList.appendChild(item.fragment);
+            this.#players[index].addScore(score);
           }
         });
 
