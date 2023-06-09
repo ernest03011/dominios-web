@@ -146,7 +146,6 @@ export class GameManager {
     `;
 
     this.#container.innerHTML = newArticle;
-
     let text = "";
 
     for (let index = 0; index < this.#currentPlayers.length; index++) {
@@ -194,27 +193,14 @@ export class GameManager {
         this.restartGame();
       });
 
-    this.#container
-      .querySelectorAll("[name='counter-list']")
-      .forEach((list) => {
-        list.addEventListener("dblclick", (event) => {
-          const target = event.target;
-          const parentList = target.parentNode;
-          const score = target.textContent;
-          const elementType = target.tagName;
-
-          if (elementType === "LI" && score !== "0") {
-            this.handleEditDeleteScore(target, score, parentList);
-          }
-        });
-      });
-
     this.#container.querySelectorAll(".card__players-btn").forEach((button) => {
       const parentCard = button.parentNode;
       button.addEventListener("click", () => {
         this.displayScore(parentCard);
       });
     });
+
+    this.handleEditDeleteScore();
   }
 
   restartGame() {
@@ -310,6 +296,7 @@ export class GameManager {
         this.handleTotalScore(currPlayerName, currTotalDisplay);
       }
     }
+    this.handleEditDeleteScore();
   }
 
   handleWinner(total, name) {
@@ -385,17 +372,31 @@ export class GameManager {
     localStorage.removeItem("players");
   }
 
-  handleEditDeleteScore(target, score, parentList) {
-    const action = prompt("Que deseas hacer? (Editar/Eliminar)");
-    const selectedOption = action.toLocaleLowerCase();
+  handleEditDeleteScore() {
+    this.#container
+      .querySelectorAll("ul[name='counter-list']")
+      .forEach((list) => {
+        list.addEventListener("dblclick", (event) => {
+          const target = event.target;
+          const scorePoint = target.textContent;
 
-    if (selectedOption === "editar" || selectedOption === "eliminar") {
-      if (selectedOption === "editar") {
-      } else if (selectedOption === "eliminar") {
-        console.log("Toca Eliminar");
-      }
-    } else {
-      alert("Intenta nuevamente, favor elegir editar o eliminar!");
-    }
+          if (target.tagName === "LI" && scorePoint !== "0") {
+            const parentList = target.parentNode;
+            const cardPlayerElm = parentList.parentNode;
+            const index = Array.from(parentList.children).indexOf(target);
+            const action = prompt("Que deseas hacer? (Editar/Eliminar)");
+            const selectedOption = action.toLocaleLowerCase();
+
+            if (selectedOption === "editar" || selectedOption === "eliminar") {
+              if (selectedOption === "editar") {
+              } else if (selectedOption === "eliminar") {
+                console.log("Toca Eliminar");
+              }
+            } else {
+              alert("Intenta nuevamente, favor elegir editar o eliminar!");
+            }
+          }
+        });
+      });
   }
 }
