@@ -396,7 +396,7 @@ export class GameManager {
                 if (selectedOption === "editar") {
                   this.editScore(target, cardPlayerElm, index);
                 } else if (selectedOption === "eliminar") {
-                  console.log("Toca Eliminar");
+                  this.deleteScore(target, cardPlayerElm, index);
                 }
               } else {
                 alert("Intenta nuevamente, favor elegir editar o eliminar!");
@@ -433,6 +433,31 @@ export class GameManager {
       } else {
         alert("Valor incorrecto. Aregar numeros del 1 al 200.");
       }
+    }
+  }
+
+  deleteScore(target, cardPlayerElm, index) {
+    const confirmDelete = confirm("Segur@ que deseas eliminar esta anotacion?");
+
+    if (confirmDelete) {
+      const currPlayers = this.getFromLocalStorage();
+      const currPlayerName = cardPlayerElm.querySelector(
+        ".card__player-title"
+      ).textContent;
+      const totalInput = cardPlayerElm.querySelector("#total-info");
+      let total = 0;
+
+      currPlayers.forEach((player, i) => {
+        if (player.name === currPlayerName) {
+          player.score.splice(index, 1);
+          this.#players[i].deleteScore(index);
+          target.parentNode.removeChild(target);
+          total = this.#players[i].calculateTotal();
+          totalInput.textContent = total;
+        }
+      });
+
+      this.saveToLocalStorage(currPlayers);
     }
   }
 }
