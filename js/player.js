@@ -23,7 +23,9 @@ export class Player {
     this.#scores[index] = score;
   }
 
-  deleteScore(index) {}
+  deleteScore(index) {
+    this.#scores.splice(index, 1);
+  }
 
   getScore() {
     return this.#scores;
