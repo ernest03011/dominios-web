@@ -276,6 +276,7 @@ export class GameManager {
 
     this.startGame();
     const players = document.querySelectorAll(".card__player");
+    this.handleEditDeleteScore();
 
     for (let index = 0; index < players.length; index++) {
       const currPlayerName = players[index].querySelector(
@@ -299,7 +300,6 @@ export class GameManager {
         this.handleTotalScore(currPlayerName, currTotalDisplay);
       }
     }
-    this.handleEditDeleteScore();
   }
 
   handleWinner(total, name) {
