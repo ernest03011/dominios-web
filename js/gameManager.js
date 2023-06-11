@@ -217,6 +217,7 @@ export class GameManager {
           this.resetAllScores();
           this.clearInput();
           resetGameModal.style.display = "none";
+          this.handleEditDeleteScore();
 
           document.querySelectorAll(".card__players-btn").forEach((btn) => {
             btn.classList.remove("hidden-visible");
@@ -314,6 +315,12 @@ export class GameManager {
 
       msg.display("blue", text);
 
+      this.#container
+        .querySelectorAll("ul[name='counter-list']")
+        .forEach((list) => {
+          list.removeEventListener("dblclick", this.handleScoreDblclick);
+        });
+
       isAWinner = true;
     } else {
       isAWinner = false;
@@ -377,34 +384,33 @@ export class GameManager {
     this.#container
       .querySelectorAll("ul[name='counter-list']")
       .forEach((list) => {
-        list.addEventListener("dblclick", (event) => {
-          const target = event.target;
-          const scorePoint = target.textContent;
-
-          if (target.tagName === "LI" && scorePoint !== "0") {
-            const parentList = target.parentNode;
-            const cardPlayerElm = parentList.parentNode;
-            const index = Array.from(parentList.children).indexOf(target);
-            const action = prompt("Que deseas hacer? (Editar/Eliminar)");
-
-            if (action) {
-              const selectedOption = action.toLocaleLowerCase();
-              if (
-                selectedOption === "editar" ||
-                selectedOption === "eliminar"
-              ) {
-                if (selectedOption === "editar") {
-                  this.editScore(target, cardPlayerElm, index);
-                } else if (selectedOption === "eliminar") {
-                  this.deleteScore(target, cardPlayerElm, index);
-                }
-              } else {
-                alert("Intenta nuevamente, favor elegir editar o eliminar!");
-              }
-            }
-          }
-        });
+        list.addEventListener("dblclick", this.handleScoreDblclick);
       });
+  }
+
+  handleScoreDblclick(event) {
+    const target = event.target;
+    const scorePoint = target.textContent;
+
+    if (target.tagName === "LI" && scorePoint !== "0") {
+      const parentList = target.parentNode;
+      const cardPlayerElm = parentList.parentNode;
+      const index = Array.from(parentList.children).indexOf(target);
+      const action = prompt("Que deseas hacer? (Editar/Eliminar)");
+
+      if (action) {
+        const selectedOption = action.toLocaleLowerCase();
+        if (selectedOption === "editar" || selectedOption === "eliminar") {
+          if (selectedOption === "editar") {
+            this.editScore(target, cardPlayerElm, index);
+          } else if (selectedOption === "eliminar") {
+            this.deleteScore(target, cardPlayerElm, index);
+          }
+        } else {
+          alert("Intenta nuevamente, favor elegir editar o eliminar!");
+        }
+      }
+    }
   }
 
   editScore(target, cardPlayerElm, index) {
