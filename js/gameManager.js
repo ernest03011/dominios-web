@@ -384,7 +384,7 @@ export class GameManager {
     this.#container
       .querySelectorAll("ul[name='counter-list']")
       .forEach((list) => {
-        list.addEventListener("dblclick", this.handleScoreDblclick);
+        list.addEventListener("dblclick", this.handleScoreDblclick.bind(this));
       });
   }
 
