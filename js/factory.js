@@ -87,3 +87,14 @@ export function inputUtlt(params) {
     inputPropelCase,
   };
 }
+
+export const debounce = (func, delay = 500) => {
+  let timerId;
+  return (...args) => {
+    clearTimeout(timerId);
+    timerId = setTimeout(() => {
+      func.apply(this, args);
+      console.log("2");
+    }, delay);
+  };
+};
