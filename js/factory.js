@@ -64,7 +64,7 @@ export function inputUtlt(params) {
   let isValid = true;
   let isAlphabetic = true;
   let inputPropelCase = [];
-  const nameRegex = /^[a-zA-Z]+$/; // Regular expression to match only alphabetic characters
+  const nameRegex = /^[A-Za-z]+(?: [A-Za-z]+)*$/; // Regular expression to match only alphabetic characters
 
   params.forEach((param) => {
     param.value = param.value.trim();
