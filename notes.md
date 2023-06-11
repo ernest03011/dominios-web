@@ -63,22 +63,28 @@ const calc = {
 
 - [x] Add functionality to load all players score from storage, and this function needs be called when the page is loaded, if and only if, storage does exist
 
-- [] Add functionality to remove last item from the storage, and the list as well, and update the total as well.
+- [x] Add functionality to remove last item from the storage, and the list as well, and update the total as well.
 
 - [] Add a button, or checkmark icon, or like a nav, to list rules of the game, and important things to know when interacting in the website
 
 - [x] Add functionality to start new game, and It can either ask if the same players will be kept ( then clear all score in storage and just display same players with 0 as the score ) or if new players should be added.
 
-- [ ] Add functionality to update the score in the list
+- [x] Add functionality to update the score in the list
 
-- [ ] Add funcionality to show the winner when it gets to 200, displaying name and the final score. Also allow to close pop up (or any alert), and then disable all buttons, and funcionality, only allow to start new Game.
+- [x] Add funcionality to show the winner when it gets to 200, displaying name and the final score. Also allow to close pop up (or any alert), and then disable all buttons, and funcionality, only allow to start new Game.
 
 - [ ] Document the project ad the end of it
 
 - [x] Update the display error to validate instead if the number is equal or less than 0 or if the number is higher than 200 and, then let the user know it should be between 1 and 200.
 
-- [] add functionality to validate that all input fields for the player's name are not empty before starting the game
+- [x] add functionality to validate that all input fields for the player's name are not empty before starting the game
 
-- [] add functionality to disable input while error message is being displayed.
+- [x] add functionality to disable input while error message is being displayed.
 
 - [] add icons to edit, and delete to each score so I can add events. For editing, I can use the replace note/elemente and update that value in the local storage using a map/filter. For deleting, I can take that elemente and remove it and then delete from the storage as well. By comparing the score list array-like and the array for the score in the storage, I can make it match the same index.
+
+### Notes after starting to use Classes
+
+- [] The logic will only allowed to edit the score once. So, use that class that is added to give a hint that was edited. Either a hover or using pseudo classes to add edited next to the score
+
+- [] Remember to take a look at all markup that is hidden and use proper way to hide it, like hide it from all, or hide it visually only, etc.
