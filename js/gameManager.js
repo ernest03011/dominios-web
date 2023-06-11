@@ -4,6 +4,7 @@ import {
   getOrdinalNumber,
   createPlayer,
   inputUtlt,
+  debounce,
 } from "./factory.js";
 import { Player } from "./player.js";
 
@@ -319,6 +320,7 @@ export class GameManager {
         .querySelectorAll("ul[name='counter-list']")
         .forEach((list) => {
           list.removeEventListener("dblclick", this.handleScoreDblclick);
+          console.log(this);
         });
 
       isAWinner = true;
@@ -381,14 +383,31 @@ export class GameManager {
   }
 
   handleEditDeleteScore() {
+    // const debouncedHandleScoreDblclick = debounce(
+    //   this.handleScoreDblclick.bind(this)
+    // );
+
+    // console.log(debouncedHandleScoreDblclick);
+
+    // this.debouncedHandleScoreDblclick = debouncedHandleScoreDblclick;
+    // console.log(this.debouncedHandleScoreDblclick);
+    // console.log(this);
     this.#container
       .querySelectorAll("ul[name='counter-list']")
       .forEach((list) => {
-        list.addEventListener("dblclick", this.handleScoreDblclick.bind(this));
+        list.addEventListener("dblclick", this.handleScoreDblclick);
       });
   }
 
   handleScoreDblclick(event) {
+    console.log(this);
+    if (event.target.classList.contains("score-point-clicked")) {
+      return;
+    }
+
+    event.target.classList.add("score-point-clicked");
+
+    console.log("Handling double click event", event.target.textContent);
     const target = event.target;
     const scorePoint = target.textContent;
 
@@ -411,6 +430,10 @@ export class GameManager {
         }
       }
     }
+
+    setTimeout(() => {
+      event.target.classList.remove("score-point-clicked");
+    }, 0);
   }
 
   editScore(target, cardPlayerElm, index) {
