@@ -276,7 +276,6 @@ export class GameManager {
 
     this.startGame();
     const players = document.querySelectorAll(".card__player");
-    this.handleEditDeleteScore();
 
     for (let index = 0; index < players.length; index++) {
       const currPlayerName = players[index].querySelector(
@@ -319,8 +318,8 @@ export class GameManager {
       this.#container
         .querySelectorAll("ul[name='counter-list']")
         .forEach((list) => {
-          list.removeEventListener("dblclick", this.handleScoreDblclick);
-          console.log(this);
+          // remove all event listeners
+          list.replaceWith(list.cloneNode(true));
         });
 
       isAWinner = true;
@@ -383,32 +382,19 @@ export class GameManager {
   }
 
   handleEditDeleteScore() {
-    // const debouncedHandleScoreDblclick = debounce(
-    //   this.handleScoreDblclick.bind(this)
-    // );
-
-    // console.log(debouncedHandleScoreDblclick);
-
-    // this.debouncedHandleScoreDblclick = debouncedHandleScoreDblclick;
-    // console.log(this.debouncedHandleScoreDblclick);
-    // console.log(this);
     this.#container
       .querySelectorAll("ul[name='counter-list']")
       .forEach((list) => {
-        list.addEventListener("dblclick", this.handleScoreDblclick);
+        list.addEventListener("dblclick", this.handleScoreDblclick.bind(this));
       });
   }
 
   handleScoreDblclick(event) {
-    console.log(this);
-    if (event.target.classList.contains("score-point-clicked")) {
+    const target = event.target;
+    if (target.classList.contains("score-point-clicked")) {
       return;
     }
 
-    event.target.classList.add("score-point-clicked");
-
-    console.log("Handling double click event", event.target.textContent);
-    const target = event.target;
     const scorePoint = target.textContent;
 
     if (target.tagName === "LI" && scorePoint !== "0") {
@@ -430,10 +416,6 @@ export class GameManager {
         }
       }
     }
-
-    setTimeout(() => {
-      event.target.classList.remove("score-point-clicked");
-    }, 0);
   }
 
   editScore(target, cardPlayerElm, index) {
@@ -459,6 +441,7 @@ export class GameManager {
         });
 
         this.saveToLocalStorage(currPlayers);
+        target.classList.add("score-point-clicked");
       } else {
         alert("Valor incorrecto. Aregar numeros del 1 al 200.");
       }
