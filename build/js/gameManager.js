@@ -34,8 +34,8 @@ export class GameManager {
       const ordinalNumber = getOrdinalNumber(index + 1);
 
       text += `
-      <p>Nombre del Jugador NO. ${index + 1}: </p>
-      <input type="text" placeholder="Agregar Nombre" id="player${
+      <p clas="">Nombre del Jugador NO. ${index + 1}: </p>
+      <input class="border-0 py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0" type="text" placeholder="Agregar Nombre" id="player${
         index + 1
       }" name="player-name" data-ordinalnumber="${ordinalNumber}">
       <br/>
@@ -48,28 +48,30 @@ export class GameManager {
   initializeGame(container) {
     this.#container = container;
     const item = `
-      <article class="modal" id="container-info">
+      <article class="modal bg-white border-solid border-red-400 text-blue-900 rounded-lg border-2 w-full shadow-lg shadow-slate-500 p-2 flex flex-col justify-center" id="container-info">
 
         <section class="card-information">
 
-          <h2 class="modal__title">A jugar Dominó</h2>
+          <h2 class="modal__title text-blue-900 mb-3 text-center">A jugar Dominó</h2>
 
           <p class="modal__label" for="players">Selecionar cantidad de jugadores: </p>
 
-          <input type="radio" id="twoPlayers" name="players_total" value="2">
-          <label for="twoPlayers">2 jugadores</label><br>
-          <input type="radio" id="threePlayers" name="players_total" value="3">
-          <label for="threePlayers">3 jugadores</label><br>
-          <input type="radio" id="fourPlayers" name="players_total" value="4">
-          <label for="fourPlayers">4 jugadores</label>
+          <div class="mb-4">
+            <input type="radio" id="twoPlayers" name="players_total" value="2">
+            <label for="twoPlayers">2 jugadores</label><br>
+            <input type="radio" id="threePlayers" name="players_total" value="3">
+            <label for="threePlayers">3 jugadores</label><br>
+            <input type="radio" id="fourPlayers" name="players_total" value="4">
+            <label for="fourPlayers">4 jugadores</label>
+          </div>
 
         </section>
 
-        <section class="card-players-info" id="card-players-info">
+        <section class="card-players-info mb-5" id="card-players-info">
 
         </section>
 
-        <button id="submit-players" class="modal-btn">Comenzar Partida</button>
+        <button id="submit-players" class="modal-btn rounded-md px-3 py-2 text-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline shrink-0">Comenzar Partida</button>
 
       </article>
     `;
@@ -123,25 +125,26 @@ export class GameManager {
 
   startGame() {
     const newArticle = `
-      <article class="modal" id="container-info">
-        <p id="card-message" class="card__message hidden-visible flex">No es un numero valido en Dominó!</p>
+      <div class="bg-white border-solid border-red-400 text-blue-900 rounded-lg border-2 w-full shadow-lg shadow-slate-500 p-2 flex flex-col justify-center">
 
-        <section id="card" class="card__content">
-        </section>
+        <article class="modal flex justify-center flex-col" id="container-info">
+          <section id="card" class="card__content flex flex-wrap gap-2 justify-center">
+          </section>
 
-        <button type="button" id="restart-game-btn" class="card__restart-game flex">Reiniciar partida</button>
+          <button type="button" id="restart-game-btn" class="card__restart-game rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline">Reiniciar partida</button>
 
-      </article>
+        </article>
 
-      <div id="reset-game-modal" class="modal-modern">
-        <div class="modal-content">
-          <span id="close-rstgame-modal" class="close">&times;</span>
+        <div id="reset-game-modal" class="modal-modern invisible">
+          <div class="modal-content">
+            <span id="close-rstgame-modal" class="close">&times;</span>
 
-          <h2>Favor elegir...</h2>
+            <h2>Favor elegir...</h2>
 
-          <button name="reset-game-btn" data-player="same-players" class="modal__btn">Si desea mantener los mismos jugadores</button>
-          <button name="reset-game-btn" data-player="new-players" class="modal__btn">O agregar jugadores nuevamente</button>
+            <button name="reset-game-btn" data-player="same-players" class="modal__btn">Si desea mantener los mismos jugadores</button>
+            <button name="reset-game-btn" data-player="new-players" class="modal__btn">O agregar jugadores nuevamente</button>
 
+          </div>
         </div>
       </div>
     `;
@@ -153,7 +156,7 @@ export class GameManager {
       text += `
   
         <!-- A player -->
-        <div class="card__player" name="card__player">
+        <div class="card__player mb-4 bg-gray-400" name="card__player">
           
           <h3 class="card__player-title">${
             this.#currentPlayers[index].name

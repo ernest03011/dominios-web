@@ -19,27 +19,37 @@
    <!-- END - Favicon -->
 
 </head>
-<body class="grid">
+<body>
 
-  <header class="bg-blue-950">
-    <h1 class="header__title flex mb-1 text-center">A jugar Dominó</h1>
-  </header>
+  <div id="page-container" class="min-h-screen relative bg-blue-900">
 
-  <main id="main__container" class="main__container">
+    <header class="bg-blue-800 text-white py-4 h-20 flex justify-center">
+      <h1 class="text-xl">A jugar Dominó</h1>
+    </header>
 
-    <p id="card-message" class="card__message hidden-visible flex">No es un numero valido en Dominó!</p>
+    <main id="main__container" class= "text-white">
 
-    <section id="card" class="card__content">
+      <div class="container mx-auto py-8 bg-blue-900 flex justify-center">
 
-    </section>
-
-  </main>
-  
-  <footer class="flex">
+        <p id="card-message" class="card__message hidden-visible text-center text-lg font-bold mb-4 hidden">No es un numero valido en Dominó!</p>
     
-    <p class="footer__content">&copy;Manuel De Jesus</p>
+        <section id="card" class="w-5/6 max-w-2xl lg:max-w-3xl">
+    
+        </section>
 
-  </footer>
+      </div>
+
+
+    </main>
+    
+    <footer class="flex bg-red-400 text-white py-4 justify-center bottom-0 absolute w-full">
+      
+      <p class="footer__content">&copy;Manuel De Jesus</p>
+
+    </footer>
+
+  </div>
+
 
   <!-- Loading Javascript file -->
 
