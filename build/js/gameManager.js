@@ -156,35 +156,30 @@ export class GameManager {
       text += `
   
         <!-- A player -->
-        <div class="card__player mb-4 bg-gray-400" name="card__player">
+        <div class="card__player mb-4 flex flex-col justify-center" name="card__player">
           
-          <h3 class="card__player-title">${
+          <h3 class="card__player-title mb-2 font-bold">${
             this.#currentPlayers[index].name
           }</h3>
   
-          <ul class="card__counter" id="${
+          <ul class="card__counter list-disc mb-2" id="${
             this.#currentPlayers[index].ordinalNumber
           }-list" name="counter-list">
             <li>0</li>
           </ul>
   
-          <input class="card__add-score no-arrows" type="number" min="1" max="200" id="${
+          <input class="card__add-score no-arrows border-solid border-blue-800 border-2 mb-2 rounded-lg" type="number" min="1" max="200" id="${
             this.#currentPlayers[index].ordinalNumber
           }-player-score" name="player-score" placeholder="0" maxlength="3" >
   
-          <p class="card__total-info">Total: <span id="total-info">${this.#players[
+          <p class="card__total-info m-2 font-bold">Total: <span id="total-info">${this.#players[
             index
           ].getScore()}</span></p>
   
   
           <button type="button" aria-controls="${
             this.#currentPlayers[index].ordinalNumber
-          }-player-score" class="card__players-btn">Anotar</button>
-  
-          <!-- <button type="button" aria-controls="${
-            this.#currentPlayers[index].ordinalNumber
-          }-list" >Remover ultimo apunte</button> -->
-  
+          }-player-score" class="card__players-btn rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline">Anotar</button>
           
         </div>
       `;
