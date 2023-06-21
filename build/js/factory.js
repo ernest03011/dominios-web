@@ -5,11 +5,11 @@ export default function displayMessage() {
   return {
     display: function (color, msg) {
       el.style.color = color;
-      el.classList.remove("hidden-visible");
+      el.classList.remove("hidden");
       el.innerHTML = msg;
 
       setTimeout(() => {
-        el.classList.add("hidden-visible");
+        el.classList.add("hidden");
       }, 2000);
     },
   };

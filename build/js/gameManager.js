@@ -254,7 +254,7 @@ export class GameManager {
       this.handleTotalScore(currPlayerName, totalDisplay);
     } else {
       const msg = displayMessage();
-      const errMsg = "Valor incorrecto. Aregar numeros del 1 al 200.";
+      const errMsg = "Valor incorrecto. Agregar numeros del 1 al 200.";
       msg.display("red", errMsg);
     }
 
