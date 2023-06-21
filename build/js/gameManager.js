@@ -128,21 +128,21 @@ export class GameManager {
       <div class="bg-white border-solid border-red-400 text-blue-900 rounded-lg border-2 w-full shadow-lg shadow-slate-500 p-2 flex flex-col justify-center">
 
         <article class="modal flex justify-center flex-col" id="container-info">
-          <section id="card" class="card__content flex flex-wrap gap-2 justify-center">
+          <section id="card" class="card__content flex flex-wrap gap-2 sm:gap-4 justify-center">
           </section>
 
           <button type="button" id="restart-game-btn" class="card__restart-game rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline">Reiniciar partida</button>
 
         </article>
 
-        <div id="reset-game-modal" class="modal-modern invisible">
-          <div class="modal-content">
-            <span id="close-rstgame-modal" class="close">&times;</span>
+        <div id="reset-game-modal" class="modal-modern hidden fixed z-10 inset-0 bg-gray-500 bg-opacity-75 w-full h-full">
+          <div class="modal-content bg-white shadow-xl shadow-gray-500 w-2/4 mx-auto mt-10 h-52 py-11 px-3 rounded-lg">
+            <span id="close-rstgame-modal" class="close cursor-pointer hover:bg-red-400 float-right font-bold p-1 rounded-full text-xl text-red-600">&times;</span>
 
-            <h2>Favor elegir...</h2>
+            <h2 class="font-bold mb-2 mx-auto">Favor elegir...</h2>
 
-            <button name="reset-game-btn" data-player="same-players" class="modal__btn">Si desea mantener los mismos jugadores</button>
-            <button name="reset-game-btn" data-player="new-players" class="modal__btn">O agregar jugadores nuevamente</button>
+            <button name="reset-game-btn" data-player="same-players" class="modal__btn rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline mb-2">Si desea mantener los mismos jugadores</button>
+            <button name="reset-game-btn" data-player="new-players" class="modal__btn rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline mb-2">O agregar jugadores nuevamente</button>
 
           </div>
         </div>
@@ -168,7 +168,7 @@ export class GameManager {
             <li>0</li>
           </ul>
   
-          <input class="card__add-score no-arrows border-solid border-blue-800 border-2 mb-2 rounded-lg" type="number" min="1" max="200" id="${
+          <input class="card__add-score border-solid border-blue-800 border-2 mb-2 rounded-lg pl-2 py-2" type="number" min="1" max="200" id="${
             this.#currentPlayers[index].ordinalNumber
           }-player-score" name="player-score" placeholder="0" maxlength="3" >
   
@@ -204,28 +204,33 @@ export class GameManager {
 
   restartGame() {
     const resetGameModal = document.getElementById("reset-game-modal");
-    resetGameModal.style.display = "block";
+    // resetGameModal.style.display = "block";
+    resetGameModal.classList.remove("hidden");
 
     resetGameModal.addEventListener(
       "click",
       function (e) {
         const target = e.target;
         if (target.id === "close-rstgame-modal") {
-          resetGameModal.style.display = "none";
+          // resetGameModal.style.display = "none";
+          resetGameModal.classList.add("hidden");
         } else if (target.dataset.player === "same-players") {
           this.resetAllScores();
           this.clearInput();
-          resetGameModal.style.display = "none";
+          // resetGameModal.style.display = "none";
+          resetGameModal.classList.add("hidden");
           this.handleEditDeleteScore();
 
           document.querySelectorAll(".card__players-btn").forEach((btn) => {
-            btn.classList.remove("hidden-visible");
+            // btn.classList.remove("hidden-visible");
+            btn.classList.remove("hidden");
           });
         } else if (target.dataset.player === "new-players") {
           this.removePlayersFromStorage();
           this.#players = [];
           this.initializeGame(this.#container);
-          resetGameModal.style.display = "none";
+          // resetGameModal.style.display = "none";
+          resetGameModal.classList.add("hidden");
         }
       }.bind(this)
     );
@@ -306,7 +311,7 @@ export class GameManager {
       alert(`Felicidades ${name}. Has ganado la partida`);
       this.#container
         .querySelectorAll(".card__players-btn")
-        .forEach((button) => button.classList.add("hidden-visible"));
+        .forEach((button) => button.classList.add("hidden"));
 
       const msg = displayMessage();
       const text = `El juego ha terminado, Felicidades ${name}. Haz clic en reiniciar partida para seguir juando`;
