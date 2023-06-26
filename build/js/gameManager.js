@@ -48,15 +48,15 @@ export class GameManager {
   initializeGame(container) {
     this.#container = container;
     const item = `
-      <article class="modal bg-white border-solid border-red-400 text-blue-900 rounded-lg border-2 w-full shadow-lg shadow-slate-500 p-2 flex flex-col justify-center" id="container-info">
+      <article class="modal bg-white border-solid border-red-400 text-blue-900 rounded-lg border-2 w-full shadow-lg shadow-slate-500 p-4 flex flex-col justify-center sm:w-3/5 mx-auto" id="container-info">
 
-        <section class="card-information">
+        <section class="card-information flex justify-center flex-col">
 
-          <h2 class="modal__title text-blue-900 mb-3 text-center">A jugar Dominó</h2>
+          <h2 class="modal__title text-blue-900 mb-3 text-center font-bold">A jugar Dominó</h2>
 
-          <p class="modal__label" for="players">Selecionar cantidad de jugadores: </p>
+          <p class="modal__label text-center mb-2" for="players">Selecionar cantidad de jugadores: </p>
 
-          <div class="mb-4">
+          <div class="mb-4 mx-auto">
             <input type="radio" id="twoPlayers" name="players_total" value="2">
             <label for="twoPlayers">2 jugadores</label><br>
             <input type="radio" id="threePlayers" name="players_total" value="3">
@@ -67,12 +67,13 @@ export class GameManager {
 
         </section>
 
-        <section class="card-players-info mb-5" id="card-players-info">
+        <section class="card-players-info mb-5 mx-auto" id="card-players-info">
 
         </section>
 
-        <button id="submit-players" class="modal-btn rounded-md px-3 py-2 text-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline shrink-0">Comenzar Partida</button>
-
+        <div class="flex justify-center">
+          <button id="submit-players" class="modal-btn rounded-md px-3 py-2 text-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline shrink-0">Comenzar Partida</button>
+        </div>
       </article>
     `;
     container.innerHTML = item;
@@ -125,14 +126,15 @@ export class GameManager {
 
   startGame() {
     const newArticle = `
-      <div class="bg-white border-solid border-red-400 text-blue-900 rounded-lg border-2 w-full shadow-lg shadow-slate-500 p-2 flex flex-col justify-center">
+      <div class="bg-white border-solid border-red-400 text-blue-900 rounded-lg border-2 w-full shadow-lg shadow-slate-500 p-2 flex flex-col justify-center max-w-6xl">
 
         <article class="modal flex justify-center flex-col" id="container-info">
           <section id="card" class="card__content flex flex-wrap gap-2 sm:gap-4 justify-center">
           </section>
 
-          <button type="button" id="restart-game-btn" class="card__restart-game rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline">Reiniciar partida</button>
-
+          <div class="flex justify-center">
+            <button type="button" id="restart-game-btn" class="card__restart-game rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline ">Reiniciar partida</button>
+          </div>
         </article>
 
         <div id="reset-game-modal" class="modal-modern hidden fixed z-10 inset-0 bg-gray-500 bg-opacity-75 w-full h-full">
