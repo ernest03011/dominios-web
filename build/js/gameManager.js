@@ -1,12 +1,69 @@
-import displayMessage from "./factory.js";
-import {
+import displayMessage, {
   createElement,
   getOrdinalNumber,
   createPlayer,
   inputUtlt,
-  debounce,
 } from "./factory.js";
 import { Player } from "./player.js";
+
+// HTML TEMPLATES
+const gamePlayerTemplate = `
+<article class="modal bg-white border-solid border-red-400 text-blue-900 rounded-lg border-2 w-full shadow-lg shadow-slate-500 p-4 flex flex-col justify-center sm:w-3/5 mx-auto" id="container-info">
+
+  <section class="card-information flex justify-center flex-col">
+
+    <h2 class="modal__title text-blue-900 mb-3 text-center font-bold">A jugar Dominó</h2>
+
+    <p class="modal__label text-center mb-2" for="players">Selecionar cantidad de jugadores: </p>
+
+    <div class="mb-4 mx-auto">
+      <input type="radio" id="twoPlayers" name="players_total" value="2">
+      <label for="twoPlayers">2 jugadores</label><br>
+      <input type="radio" id="threePlayers" name="players_total" value="3">
+      <label for="threePlayers">3 jugadores</label><br>
+      <input type="radio" id="fourPlayers" name="players_total" value="4">
+      <label for="fourPlayers">4 jugadores</label>
+    </div>
+
+  </section>
+
+  <section class="card-players-info mb-5 mx-auto" id="card-players-info">
+
+  </section>
+
+  <div class="flex justify-center">
+    <button id="submit-players" class="modal-btn rounded-md px-3 py-2 text-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline shrink-0">Comenzar Partida</button>
+  </div>
+</article>
+`;
+
+const gamePlaysTemplate = `
+<div class="bg-white border-solid border-red-400 text-blue-900 rounded-lg border-2 w-full shadow-lg shadow-slate-500 p-2 flex flex-col justify-center max-w-6xl">
+
+  <article class="modal flex justify-center flex-col" id="container-info">
+    <section id="card" class="card__content flex flex-wrap gap-2 sm:gap-4 justify-center">
+    </section>
+
+    <div class="flex justify-center">
+      <button type="button" id="restart-game-btn" class="card__restart-game rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline ">Reiniciar partida</button>
+    </div>
+  </article>
+
+  <div id="reset-game-modal" class="modal-modern hidden fixed z-10 inset-0 bg-gray-500 bg-opacity-75 w-full h-full">
+    <div class="modal-content bg-white shadow-xl shadow-gray-500 w-2/4 mx-auto mt-10 h-52 py-11 px-3 rounded-lg">
+      <span id="close-rstgame-modal" class="close cursor-pointer hover:bg-red-400 float-right font-bold p-1 rounded-full text-xl text-red-600">&times;</span>
+
+      <h2 class="font-bold mb-2 mx-auto">Favor elegir...</h2>
+
+      <button name="reset-game-btn" data-player="same-players" class="modal__btn rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline mb-2">Si desea mantener los mismos jugadores</button>
+      <button name="reset-game-btn" data-player="new-players" class="modal__btn rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline mb-2">O agregar jugadores nuevamente</button>
+
+    </div>
+  </div>
+</div>
+`;
+
+// END --- HTML TEMPLATES
 
 export class GameManager {
   #players;
@@ -47,35 +104,7 @@ export class GameManager {
 
   initializeGame(container) {
     this.#container = container;
-    const item = `
-      <article class="modal bg-white border-solid border-red-400 text-blue-900 rounded-lg border-2 w-full shadow-lg shadow-slate-500 p-4 flex flex-col justify-center sm:w-3/5 mx-auto" id="container-info">
-
-        <section class="card-information flex justify-center flex-col">
-
-          <h2 class="modal__title text-blue-900 mb-3 text-center font-bold">A jugar Dominó</h2>
-
-          <p class="modal__label text-center mb-2" for="players">Selecionar cantidad de jugadores: </p>
-
-          <div class="mb-4 mx-auto">
-            <input type="radio" id="twoPlayers" name="players_total" value="2">
-            <label for="twoPlayers">2 jugadores</label><br>
-            <input type="radio" id="threePlayers" name="players_total" value="3">
-            <label for="threePlayers">3 jugadores</label><br>
-            <input type="radio" id="fourPlayers" name="players_total" value="4">
-            <label for="fourPlayers">4 jugadores</label>
-          </div>
-
-        </section>
-
-        <section class="card-players-info mb-5 mx-auto" id="card-players-info">
-
-        </section>
-
-        <div class="flex justify-center">
-          <button id="submit-players" class="modal-btn rounded-md px-3 py-2 text-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline shrink-0">Comenzar Partida</button>
-        </div>
-      </article>
-    `;
+    let item = gamePlayerTemplate;
     container.innerHTML = item;
     container.setAttribute("class", "modal-modern");
     container.style.display = "block";
@@ -125,31 +154,7 @@ export class GameManager {
   }
 
   startGame() {
-    const newArticle = `
-      <div class="bg-white border-solid border-red-400 text-blue-900 rounded-lg border-2 w-full shadow-lg shadow-slate-500 p-2 flex flex-col justify-center max-w-6xl">
-
-        <article class="modal flex justify-center flex-col" id="container-info">
-          <section id="card" class="card__content flex flex-wrap gap-2 sm:gap-4 justify-center">
-          </section>
-
-          <div class="flex justify-center">
-            <button type="button" id="restart-game-btn" class="card__restart-game rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline ">Reiniciar partida</button>
-          </div>
-        </article>
-
-        <div id="reset-game-modal" class="modal-modern hidden fixed z-10 inset-0 bg-gray-500 bg-opacity-75 w-full h-full">
-          <div class="modal-content bg-white shadow-xl shadow-gray-500 w-2/4 mx-auto mt-10 h-52 py-11 px-3 rounded-lg">
-            <span id="close-rstgame-modal" class="close cursor-pointer hover:bg-red-400 float-right font-bold p-1 rounded-full text-xl text-red-600">&times;</span>
-
-            <h2 class="font-bold mb-2 mx-auto">Favor elegir...</h2>
-
-            <button name="reset-game-btn" data-player="same-players" class="modal__btn rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline mb-2">Si desea mantener los mismos jugadores</button>
-            <button name="reset-game-btn" data-player="new-players" class="modal__btn rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline mb-2">O agregar jugadores nuevamente</button>
-
-          </div>
-        </div>
-      </div>
-    `;
+    let newArticle = gamePlaysTemplate;
 
     this.#container.innerHTML = newArticle;
     let text = "";
@@ -206,7 +211,6 @@ export class GameManager {
 
   restartGame() {
     const resetGameModal = document.getElementById("reset-game-modal");
-    // resetGameModal.style.display = "block";
     resetGameModal.classList.remove("hidden");
 
     resetGameModal.addEventListener(
@@ -214,24 +218,20 @@ export class GameManager {
       function (e) {
         const target = e.target;
         if (target.id === "close-rstgame-modal") {
-          // resetGameModal.style.display = "none";
           resetGameModal.classList.add("hidden");
         } else if (target.dataset.player === "same-players") {
           this.resetAllScores();
           this.clearInput();
-          // resetGameModal.style.display = "none";
           resetGameModal.classList.add("hidden");
           this.handleEditDeleteScore();
 
           document.querySelectorAll(".card__players-btn").forEach((btn) => {
-            // btn.classList.remove("hidden-visible");
             btn.classList.remove("hidden");
           });
         } else if (target.dataset.player === "new-players") {
           this.removePlayersFromStorage();
           this.#players = [];
           this.initializeGame(this.#container);
-          // resetGameModal.style.display = "none";
           resetGameModal.classList.add("hidden");
         }
       }.bind(this)
@@ -323,7 +323,6 @@ export class GameManager {
       this.#container
         .querySelectorAll("ul[name='counter-list']")
         .forEach((list) => {
-          // remove all event listeners
           list.replaceWith(list.cloneNode(true));
         });
 

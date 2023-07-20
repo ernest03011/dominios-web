@@ -21,13 +21,13 @@
 </head>
 <body>
 
-  <div id="page-container" class="min-h-screen">
+  <div id="page-container" class=" flex flex-col min-h-screen">
 
     <header class="py-4 h-20 flex justify-center">
       <h1 class="text-3xl text-blue-900 font-bold">A jugar Dominó</h1>
     </header>
 
-    <main id="main__container">
+    <main id="main__container" class="flex-grow">
 
       <div class="my-0 mx-auto w-11/12">
 
@@ -40,7 +40,7 @@
             <summary class="bg-white text-blue-600 font-bold">
               Reglas del Juego
             </summary>
-            <ul>
+            <ul class="text-center font-medium text-gray-900">
               <li>Agregar Numeros del 1 al 100!</li>
               <li>Doble-clic para editar o eliminar una anotacion</li>
             </ul>
@@ -56,9 +56,9 @@
 
     </main>
     
-    <footer class="flex py-4 justify-center bottom-0 absolute w-full">
+    <footer class="flex justify-center mt-auto w-full bg-black bg-opacity-50">
       
-      <p class="footer__content text-blue-900 font-bold">&copy;Manuel De Jesus</p>
+      <p class="footer__content text-white font-bold py-3">&copy;Manuel De Jesus</p>
 
     </footer>
 

@@ -94,7 +94,6 @@ export const debounce = (func, delay = 500) => {
     clearTimeout(timerId);
     timerId = setTimeout(() => {
       func.apply(this, args);
-      console.log("2");
     }, delay);
   };
 };
