@@ -6,62 +6,56 @@ import displayMessage, {
 } from "./factory.js";
 import { Player } from "./player.js";
 
-// HTML TEMPLATES
+
 const gamePlayerTemplate = `
-<article class="modal bg-white border-solid border-red-400 text-blue-900 rounded-lg border-2 w-full shadow-lg shadow-slate-500 p-4 flex flex-col justify-center sm:w-3/5 mx-auto" id="container-info">
 
-  <section class="card-information flex justify-center flex-col">
+  <p class="modal__label mb-2" for="players">Selecionar cantidad de jugadores: </p>
 
-    <h2 class="modal__title text-blue-900 mb-3 text-center font-bold">A jugar Dominó</h2>
-
-    <p class="modal__label text-center mb-2" for="players">Selecionar cantidad de jugadores: </p>
-
-    <div class="mb-4 mx-auto">
-      <input type="radio" id="twoPlayers" name="players_total" value="2">
-      <label for="twoPlayers">2 jugadores</label><br>
-      <input type="radio" id="threePlayers" name="players_total" value="3">
-      <label for="threePlayers">3 jugadores</label><br>
-      <input type="radio" id="fourPlayers" name="players_total" value="4">
-      <label for="fourPlayers">4 jugadores</label>
-    </div>
-
-  </section>
+  <div class="mb-4 mx-auto text-start">
+    <input type="radio" id="twoPlayers" name="players_total" value="2">
+    <label for="twoPlayers">2 jugadores</label><br>
+    <input type="radio" id="threePlayers" name="players_total" value="3">
+    <label for="threePlayers">3 jugadores</label><br>
+    <input type="radio" id="fourPlayers" name="players_total" value="4">
+    <label for="fourPlayers">4 jugadores</label>
+  </div>
 
   <section class="card-players-info mb-5 mx-auto" id="card-players-info">
 
   </section>
 
-  <div class="flex justify-center">
-    <button id="submit-players" class="modal-btn rounded-md px-3 py-2 text-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline shrink-0">Comenzar Partida</button>
+  <div class="d-flex justify-content-center">
+    <button id="submit-players" class="modal-btn rounded px-3 py-2 text-center text-white fw-semibold bg-primary shadow-sm border-0">Comenzar Partida</button>
   </div>
-</article>
-`;
+
+`.trim();
 
 const gamePlaysTemplate = `
-<div class="bg-white border-solid border-red-400 text-blue-900 rounded-lg border-2 w-full shadow-lg shadow-slate-500 p-2 flex flex-col justify-center max-w-6xl">
+<div class="text-primary rounded w-100 p-2 mx-auto">
 
-  <article class="modal flex justify-center flex-col" id="container-info">
-    <section id="card" class="card__content flex flex-wrap gap-2 sm:gap-4 justify-center">
+  <article class="cs-modal d-flex flex-column justify-content-center" id="container-info">
+    <section id="card" class="card__content d-flex flex-wrap justify-content-center gap-2">
     </section>
 
-    <div class="flex justify-center">
-      <button type="button" id="restart-game-btn" class="card__restart-game rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline ">Reiniciar partida</button>
+    <div class="flex justify-content-center">
+      <button type="button" id="restart-game-btn" class="card__restart-game rounded px-3 py-2 d-flex justify-content-center text-sm fw-semibold text-white bg-primary shadow-sm border-0">Reiniciar partida</button>
     </div>
   </article>
 
-  <div id="reset-game-modal" class="modal-modern hidden fixed z-10 inset-0 bg-gray-500 bg-opacity-75 w-full h-full">
-    <div class="modal-content bg-white shadow-xl shadow-gray-500 w-2/4 mx-auto mt-10 h-52 py-11 px-3 rounded-lg">
-      <span id="close-rstgame-modal" class="close cursor-pointer hover:bg-red-400 float-right font-bold p-1 rounded-full text-xl text-red-600">&times;</span>
+  <div id="reset-game-modal" class="modal-modern d-none position-fixed z-10 top-0 start-0 bg-dark bg-opacity-50 w-100 h-100">
+    <div class="modal-content bg-white shadow-lg mx-auto mt-4 p-3 rounded" style="width: 50%; height: 13rem;">
+      <span id="close-rstgame-modal" class="close cursor-pointer float-end fw-bold p-1 rounded-circle fs-4 text-danger hover:bg-danger-subtle">&times;</span>
 
-      <h2 class="font-bold mb-2 mx-auto">Favor elegir...</h2>
+      <h2 class="fw-bold mb-2 text-center">Favor elegir...</h2>
 
-      <button name="reset-game-btn" data-player="same-players" class="modal__btn rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline mb-2">Si desea mantener los mismos jugadores</button>
-      <button name="reset-game-btn" data-player="new-players" class="modal__btn rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline mb-2">O agregar jugadores nuevamente</button>
+      <button name="reset-game-btn" data-player="same-players" class="modal__btn rounded px-3 py-2 d-flex justify-content-center text-sm fw-semibold text-white bg-primary shadow-sm border-0 mb-2">Si desea mantener los mismos jugadores</button>
+      <button name="reset-game-btn" data-player="new-players" class="modal__btn rounded px-3 py-2 d-flex justify-content-center text-sm fw-semibold text-white bg-primary shadow-sm border-0 mb-2">O agregar jugadores nuevamente</button>
 
     </div>
   </div>
+
 </div>
-`;
+`.trim();
 
 // END --- HTML TEMPLATES
 
@@ -91,12 +85,18 @@ export class GameManager {
       const ordinalNumber = getOrdinalNumber(index + 1);
 
       text += `
-      <p clas="">Nombre del Jugador NO. ${index + 1}: </p>
-      <input class="border-0 py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0" type="text" placeholder="Agregar Nombre" id="player${
-        index + 1
-      }" name="player-name" data-ordinalnumber="${ordinalNumber}">
-      <br/>
-    `;
+        <p class="">Nombre del Jugador NO. ${index + 1}: </p>
+        <input
+          class="form-control border-0 ps-1 py-1 text-dark placeholder-secondary shadow-none"
+          type="text"
+          placeholder="Agregar Nombre"
+          id="player${index + 1}"
+          name="player-name"
+          data-ordinalnumber="${ordinalNumber}"
+        >
+        <br/>
+
+      `.trim();
     }
 
     this.#container.querySelector("#card-players-info").innerHTML = text;
@@ -107,7 +107,7 @@ export class GameManager {
     let item = gamePlayerTemplate;
     container.innerHTML = item;
     container.setAttribute("class", "modal-modern");
-    container.style.display = "block";
+    // container.style.display = "block";
 
     container.querySelectorAll("[name='players_total']").forEach((radioBtn) => {
       radioBtn.addEventListener("click", () => {
@@ -163,33 +163,42 @@ export class GameManager {
       text += `
   
         <!-- A player -->
-        <div class="card__player mb-4 flex flex-col justify-center" name="card__player">
-          
-          <h3 class="card__player-title mb-2 font-bold">${
-            this.#currentPlayers[index].name
-          }</h3>
+        <div class="card__player mb-4 flex flex-column justify-content-center" name="card__player">
   
-          <ul class="card__counter list-disc mb-2" id="${
-            this.#currentPlayers[index].ordinalNumber
-          }-list" name="counter-list">
+          <h3 class="card__player-title mb-2 fw-bold">
+            ${this.#currentPlayers[index].name}
+          </h3>
+
+          <ul class="card__counter list-unstyled mb-2" id="${this.#currentPlayers[index].ordinalNumber}-list" name="counter-list" style="list-style-type: disc; padding-left: 1.25rem;">
             <li>0</li>
           </ul>
-  
-          <input class="card__add-score border-solid border-blue-800 border-2 mb-2 rounded-lg pl-2 py-2" type="number" min="1" max="200" id="${
-            this.#currentPlayers[index].ordinalNumber
-          }-player-score" name="player-score" placeholder="0" maxlength="3" >
-  
-          <p class="card__total-info m-2 font-bold">Total: <span id="total-info">${this.#players[
-            index
-          ].getScore()}</span></p>
-  
-  
-          <button type="button" aria-controls="${
-            this.#currentPlayers[index].ordinalNumber
-          }-player-score" class="card__players-btn rounded-md px-3 py-2 justify-center text-sm font-semibold text-white bg-blue-800 shadow-sm focus-visible:outline">Anotar</button>
-          
+
+          <input
+            class="card__add-score form-control border border-2 border-primary mb-2 rounded ps-2 py-2"
+            type="number"
+            min="1"
+            max="200"
+            id="${this.#currentPlayers[index].ordinalNumber}-player-score"
+            name="player-score"
+            placeholder="0"
+            maxlength="3"
+          >
+
+          <p class="card__total-info m-2 fw-bold">
+            Total: <span id="total-info">${this.#players[index].getScore()}</span>
+          </p>
+
+          <button
+            type="button"
+            aria-controls="${this.#currentPlayers[index].ordinalNumber}-player-score"
+            class="card__players-btn rounded px-3 py-2 justify-content-center text-sm fw-semibold text-white bg-primary shadow-sm"
+          >
+            Anotar
+          </button>
+
         </div>
-      `;
+
+      `.trim();
     }
 
     this.#container.querySelector("#card").innerHTML = text;
@@ -211,28 +220,28 @@ export class GameManager {
 
   restartGame() {
     const resetGameModal = document.getElementById("reset-game-modal");
-    resetGameModal.classList.remove("hidden");
+    resetGameModal.classList.remove("d-none");
 
     resetGameModal.addEventListener(
       "click",
       function (e) {
         const target = e.target;
         if (target.id === "close-rstgame-modal") {
-          resetGameModal.classList.add("hidden");
+          resetGameModal.classList.add("d-none");
         } else if (target.dataset.player === "same-players") {
           this.resetAllScores();
           this.clearInput();
-          resetGameModal.classList.add("hidden");
+          resetGameModal.classList.add("d-none");
           this.handleEditDeleteScore();
 
           document.querySelectorAll(".card__players-btn").forEach((btn) => {
-            btn.classList.remove("hidden");
+            btn.classList.remove("d-none");
           });
         } else if (target.dataset.player === "new-players") {
           this.removePlayersFromStorage();
           this.#players = [];
           this.initializeGame(this.#container);
-          resetGameModal.classList.add("hidden");
+          resetGameModal.classList.add("d-none");
         }
       }.bind(this)
     );
@@ -308,12 +317,11 @@ export class GameManager {
 
   handleWinner(total, name) {
     let isAWinner = false;
-
     if (total >= 200) {
       alert(`Felicidades ${name}. Has ganado la partida`);
       this.#container
         .querySelectorAll(".card__players-btn")
-        .forEach((button) => button.classList.add("hidden"));
+        .forEach((button) => button.classList.add("d-none"));
 
       const msg = displayMessage();
       const text = `El juego ha terminado, Felicidades ${name}. Haz clic en reiniciar partida para seguir juando`;
@@ -344,7 +352,8 @@ export class GameManager {
     const currPlayers = this.getFromLocalStorage();
 
     for (let index = 0; index < currPlayers.length; index++) {
-      if (currPlayers[index].name === playerName) {
+      if (currPlayers[index].name.trim() === playerName.trim()) {
+        console.log('testing storage 3');
         currPlayers[index].score.push(score);
         this.#players[index].addScore(score);
       }
@@ -356,7 +365,9 @@ export class GameManager {
   handleTotalScore(playerName, totalDisplay) {
     let total = 0;
     this.#players.forEach((player) => {
-      if (player.getPlayerName() === playerName) {
+      console.log(player.getPlayerName() + ' test2');
+      console.log(playerName + ' test');
+      if (player.getPlayerName().trim() == playerName.trim()) {
         total = player.calculateTotal();
         totalDisplay.textContent = total;
         this.handleWinner(total, player.getPlayerName());
