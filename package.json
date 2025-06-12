@@ -5,8 +5,8 @@
   "main": "tailwind.config.js",
   "scripts": {
     "format": "prettier --write .",
-    "compile:sass": "sass --watch scss:dist/css",
-    "sass:build": "sass --watch --style=compressed scss:dist/css"
+    "compile:sass": "sass --watch scss:build/css",
+    "sass:build": "sass --watch --style=compressed scss:build/css"
   },
   "repository": {
     "type": "git",
