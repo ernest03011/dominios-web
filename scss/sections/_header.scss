@@ -2,7 +2,9 @@
 
 .header__title{
   padding: $spacer;
-  font-size: $fs-1;
-  font-weight: $fw-b;
   margin-bottom: $spacer-md;
+
+  font-size: $fs-1;
+  font-weight: $fw-lg;
+  text-transform: capitalize;
 }

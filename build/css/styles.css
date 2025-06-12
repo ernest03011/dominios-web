@@ -11948,9 +11948,10 @@ input[type=number] {
 
 .header__title {
   padding: 1rem;
-  font-size: 2.3rem;
-  font-weight: 700;
   margin-bottom: 2rem;
+  font-size: 2.3rem;
+  font-weight: 900;
+  text-transform: capitalize;
 }
 
 .card__content {
