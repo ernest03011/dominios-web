@@ -14,9 +14,20 @@ $fs-1: 2.3rem;
 
 $main-bg-color: hsl(220, 10%, 15%);
 
-$primary-clr: #fff;
-$secondary-clr: darkblue;
-$secondary-clr-light: rgba(84, 84, 205, 0.956);
+$clr-primary: darkblue;
+$clr-primary-light: rgba(84, 84, 205, 0.956);
+
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
 
 $spacer: 1rem;
 $spacer-md: 2rem;
@@ -26,6 +37,14 @@ $shadow: 0 0 1em red;
 $br: 15px;
 
 // END - VARIABLES
+
+// OVERRIDE BOOTSTRAP VARIABLES
+
+  // COLOR OVERRIDES
+
+  $primary:       $clr-primary;
+
+// END -- OVERRIDE BOOTSTRAP VARIABLES 
 
 
 // IMPORT BOOTSTRAP

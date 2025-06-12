@@ -11,8 +11,8 @@
   width: 94%;
   margin: 0 auto;
 
-  background-color: $primary-clr;
-  color: $secondary-clr;
+  background-color: $white;
+  color: $primary;
   border-radius: $br;
   box-shadow: $shadow;
 
@@ -35,7 +35,7 @@
 
 .card__message{
   color: red;
-  background-color: $primary-clr;
+  background-color: $white;
   font-size: $fs-3;
   font-weight: $fw-b;
   padding: $spacer;
@@ -47,9 +47,9 @@
 
 .card__total-screen{
   width: 6rem;
-  color: $secondary-clr;
-  border: 2px solid $secondary-clr;
-  background-color: $primary-clr;
+  color: $primary;
+  border: 2px solid $primary;
+  background-color: $white;
   
 }
 

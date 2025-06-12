@@ -4,7 +4,7 @@
   // background-color: #fff;
   width: 90%;
   max-width: 700px;
-  color: $secondary-clr;
+  color: $primary;
   margin: 0 auto;
 
   // refactor
@@ -40,7 +40,7 @@
 }
 
 .close {
-  color: $secondary-clr;
+  color: $primary;
   float: right;
   font-size: 32px;
   font-weight: bold;

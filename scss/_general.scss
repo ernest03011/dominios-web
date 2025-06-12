@@ -17,7 +17,7 @@ body{
   background-image: url(../images/domino-colores-640x426.jpg);
   background-size: cover;
 
-  color: $secondary-clr;
+  color: $primary;
 
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -54,7 +54,7 @@ h3{
 
 .card__add-score, button{
   width: 8.12rem;
-  color: $primary-clr;
+  color: $white;
   border-radius: $br;
   // background-color: $secondary-clr;
   margin-bottom: 0.5rem;
