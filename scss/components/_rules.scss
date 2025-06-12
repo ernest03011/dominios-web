@@ -1,0 +1,37 @@
+@use '../custom' as *;
+
+.rules-component{
+
+  margin: 2rem auto;
+  padding: 1rem 3rem;
+  width: 50%;
+
+  background-color: $white;
+  border-radius: 5%;
+
+  font-size: $fs-p;
+
+  &__header{
+    margin-bottom: 0.5rem;
+
+    color: $primary;
+
+    font-weight: $fw-b;
+    font-size: 1.250rem;
+  }
+
+  &__list{
+    padding-left: 0;
+
+    list-style-type: none;
+    opacity: 0.5;
+
+    font-weight: $fw-m !important;
+  }
+
+  &__items{
+    margin-bottom: 0.875rem !important;
+
+    color: $gray-900;
+  }
+}

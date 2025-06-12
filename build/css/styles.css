@@ -11946,6 +11946,31 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.rules-component {
+  margin: 2rem auto;
+  padding: 1rem 3rem;
+  width: 50%;
+  background-color: #fff;
+  border-radius: 5%;
+  font-size: 1rem;
+}
+.rules-component__header {
+  margin-bottom: 0.5rem;
+  color: darkblue;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+.rules-component__list {
+  padding-left: 0;
+  list-style-type: none;
+  opacity: 0.5;
+  font-weight: 600 !important;
+}
+.rules-component__items {
+  margin-bottom: 0.875rem !important;
+  color: #212529;
+}
+
 .header__title {
   padding: 1rem;
   margin-bottom: 2rem;
