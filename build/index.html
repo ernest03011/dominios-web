@@ -31,47 +31,46 @@
 
 <body>
 
-  <div id="page-container" class=" flex flex-col min-h-screen">
+  <div id="page-container" class="d-flex flex-column min-vh-100">
 
-    <header class="py-4 h-20 flex justify-center">
-      <h1 class="text-3xl text-blue-900 font-bold">A jugar Dominó</h1>
+    <header class="py-4 h-20 d-flex justify-content-center align-items-center">
+      <h1 class="text-primary fs-2 fw-bold">A jugar Dominó</h1>
     </header>
 
-    <main id="main__container" class="flex-grow">
+    <main id="main__container" class="flex-grow-1">
 
-      <div class="my-0 mx-auto w-11/12">
+      <div class="mx-auto w-100" style="max-width: 91.666667%;">
 
         <div>
           <p id="card-message"
-            class="card__message text-center text-lg font-bold mb-4 hidden px-4 py-3 bg-white rounded-lg w-2/4 mx-auto my-0">
-            No es un numero valido en Dominó!</p>
+            class="card__message text-center fs-5 fw-bold mb-4 d-none px-4 py-3 bg-white rounded w-50 mx-auto">
+            No es un numero valido en Dominó!
+          </p>
         </div>
 
-        <div class="text-center text-lg mb-4 px-4 py-3 bg-white rounded-lg w-2/4 mx-auto my-0">
+        <div class="text-center fs-5 mb-4 px-4 py-3 bg-white rounded w-50 mx-auto">
           <details class="bg-white mx-auto">
-            <summary class="bg-white text-blue-600 font-bold">
+            <summary class="bg-white text-primary fw-bold">
               Reglas del Juego
             </summary>
-            <ul class="text-center font-medium text-gray-900">
+            <ul class="text-center fw-medium text-dark">
               <li>Agregar Numeros del 1 al 100!</li>
               <li>Doble-clic para editar o eliminar una anotacion</li>
             </ul>
           </details>
         </div>
 
-        <section id="card" class="w-11/12 mx-auto">
+        <section id="card" class="mx-auto w-100" style="max-width: 91.666667%;">
+
 
         </section>
 
       </div>
 
-
     </main>
 
-    <footer class="flex justify-center mt-auto w-full bg-black bg-opacity-50">
-
-      <p class="footer__content text-white font-bold py-3">&copy;Manuel De Jesus</p>
-
+    <footer class="d-flex justify-content-center mt-auto w-100 bg-black bg-opacity-50">
+      <p class="footer__content text-white fw-bold py-3 mb-0">&copy;Manuel De Jesus</p>
     </footer>
 
   </div>
