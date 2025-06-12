@@ -1,0 +1,26 @@
+@use './custom' as *;
+
+@media(min-width: 45em){
+
+  :root{
+    font-size: 16px;
+  }
+
+  .card__content{
+    // max-width: 720px;
+  }
+
+  footer{
+    font-weight: $fw-n;
+  }
+}
+
+@media(min-width: 75em){
+
+  footer{
+
+    font-size: $fs-p;
+    font-weight: $fw-m;
+  
+  }
+}

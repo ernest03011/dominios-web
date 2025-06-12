@@ -1,0 +1,21 @@
+// VARIABLES AND OVERWRITTEN VARIABLES
+@use './custom';
+
+// IMPORT CSS FOR RESETTING
+@use './reset';
+
+// IMPORT GENERAL CSS
+@use './general';
+
+// IMPORT COMPONENTS
+
+// IMPORT THE SECTIONS
+@use './sections/header';
+@use './sections/base-card';
+@use './sections/modal';
+@use './sections/footer';
+
+// IMPORT PAGES
+
+// IMPORT MEDIA QUERIES
+@use './media';

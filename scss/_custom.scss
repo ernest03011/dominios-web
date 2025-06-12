@@ -1,0 +1,32 @@
+// VARIABLES
+
+$font-size-root: 14px;
+$ff: 'Poppins', sans-serif;
+
+$fw-n: 400;
+$fw-m: 600;
+$fw-b: 700;
+
+$fs-p: 1rem;
+$fs-3: 1.5rem;
+$fs-2: 2rem;
+$fs-1: 2.3rem;
+
+$main-bg-color: hsl(220, 10%, 15%);
+
+$primary-clr: #fff;
+$secondary-clr: darkblue;
+$secondary-clr-light: rgba(84, 84, 205, 0.956);
+
+$spacer: 1rem;
+$spacer-md: 2rem;
+$spacer-lg: 3rem;
+
+$shadow: 0 0 1em red;
+$br: 15px;
+
+// END - VARIABLES
+
+
+// IMPORT BOOTSTRAP
+@import "../node_modules/bootstrap/scss/bootstrap";

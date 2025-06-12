@@ -1,0 +1,58 @@
+@use '../custom' as *;
+
+
+.card__content{
+
+  // display: grid;
+  // grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  // justify-content: center;
+  // align-items: flex-start;
+
+  width: 94%;
+  margin: 0 auto;
+
+  background-color: $primary-clr;
+  color: $secondary-clr;
+  border-radius: $br;
+  box-shadow: $shadow;
+
+  // from html template
+  // d-flex flex-wrap justify-content-center gap-2 
+
+}
+
+.card__player{
+
+  padding: $spacer;
+}
+
+.card__restart-game{
+  width: auto;
+  margin: $spacer-md auto;
+  padding: $spacer $spacer-md;
+  border-radius: 1.5rem;
+}
+
+.card__message{
+  color: red;
+  background-color: $primary-clr;
+  font-size: $fs-3;
+  font-weight: $fw-b;
+  padding: $spacer;
+}
+
+.card__total{
+  gap: 0.2rem;
+}
+
+.card__total-screen{
+  width: 6rem;
+  color: $secondary-clr;
+  border: 2px solid $secondary-clr;
+  background-color: $primary-clr;
+  
+}
+
+.card__players-btn{
+  margin-top: 1rem;
+}

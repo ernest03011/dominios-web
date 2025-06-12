@@ -1,0 +1,15 @@
+@use '../custom' as *;
+
+footer{
+
+  gap: 2em;
+  margin-bottom: 2rem;
+  font-weight: $fw-b;
+
+  margin-top: $spacer-lg;
+
+}
+
+.footer__content{
+  padding-inline: $spacer;
+}

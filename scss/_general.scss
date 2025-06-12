@@ -1,0 +1,79 @@
+
+@use './custom' as *;
+
+
+.hidden-visible{
+  display: none;
+}
+
+body{
+
+  font-family: $ff;
+  font-size: $fs-p;
+  line-height: 1.5;
+
+  background-color: $main-bg-color;
+  // background-image: url(images/domino-colores-640x426.jpg);
+  background-image: url(../images/domino-colores-640x426.jpg);
+  background-size: cover;
+
+  color: $secondary-clr;
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+
+  @include media-breakpoint-up(lg){
+   background-image: url(../images/dominio-colores-1920x1280.jpg); 
+  }
+}
+
+main{
+
+  grid-row: 2 / 3;
+
+}
+
+h3{
+
+  padding-inline: $spacer;
+  margin-top: $spacer;
+
+}
+
+.no-arrows::-webkit-inner-spin-button,
+.no-arrows::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-arrows {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  /* Add any other styles as needed */
+}
+
+.card__add-score, button{
+  width: 8.12rem;
+  color: $primary-clr;
+  border-radius: $br;
+  // background-color: $secondary-clr;
+  margin-bottom: 0.5rem;
+  margin-inline: auto;
+
+}
+
+input[type="number"]{
+  padding-inline: $spacer;
+  padding-block: calc($spacer * 0.1);
+
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
