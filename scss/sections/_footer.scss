@@ -1,15 +1,18 @@
 @use '../custom' as *;
 
-footer{
-
-  gap: 2em;
-  margin-bottom: 2rem;
-  font-weight: $fw-b;
+.footer{
 
   margin-top: $spacer-lg;
+  gap: 2em;
 
-}
+  font-weight: $fw-b;
 
-.footer__content{
-  padding-inline: $spacer;
+  &__content{
+    padding-inline: $spacer;
+
+    color: $white;
+    font-weight: $fw-b;
+    padding: 1rem 1rem;
+  }
+
 }

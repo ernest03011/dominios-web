@@ -11895,8 +11895,6 @@ body {
   background-image: url(../images/domino-colores-640x426.jpg);
   background-size: cover;
   color: darkblue;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
 }
 @media (min-width: 992px) {
   body {
@@ -12039,15 +12037,16 @@ input[type=number] {
   transform: scale(1.5);
 }
 
-footer {
-  gap: 2em;
-  margin-bottom: 2rem;
-  font-weight: 700;
+.footer {
   margin-top: 3rem;
+  gap: 2em;
+  font-weight: 700;
 }
-
 .footer__content {
   padding-inline: 1rem;
+  color: #fff;
+  font-weight: 700;
+  padding: 1rem 1rem;
 }
 
 @media (min-width: 45em) {

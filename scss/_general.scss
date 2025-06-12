@@ -19,8 +19,8 @@ body{
 
   color: $primary;
 
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+  // display: grid;
+  // grid-template-rows: auto 1fr auto;
 
   @include media-breakpoint-up(lg){
    background-image: url(../images/dominio-colores-1920x1280.jpg); 
